@@ -130,4 +130,4 @@ deterministic regression. Promotion moves each case to where it is cheapest to k
 | A new domain | `regression/suites/<domain>/`, rules in the oracle, `domain` in the manifest `_meta` |
 | An API specialist | an agent file with the four layers, and an API MCP server (for example Postman) or `[API]` checks via `curl` |
 | A new guardrail | a hook script + a matcher in `.claude/settings.json` + a unit test in `scripts/unit/` |
-| Tracker integration, secrets, plugins | the full edition ([ask the author](https://www.linkedin.com/in/olga-manuylova/)) |
+| Tracker integration, secrets, plugins | Agentic QA Enterprise (proprietary; [contact](https://www.linkedin.com/in/olga-manuylova/)) |

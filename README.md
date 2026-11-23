@@ -1,6 +1,6 @@
-# agentic-qa-lean
+# agentic-qa-lean: reference implementation
 
-**A lean, secret-free template for an agentic QA system.** Test cases are written in plain English
+**The open reference implementation of an agentic QA system.** Test cases are written in plain English
 in CSV files. Claude Code agents run them in real browsers through
 [Playwright MCP](https://github.com/microsoft/playwright-mcp), judge what they see against a
 business-logic oracle, and return evidence-backed verdicts. Cases that become stable are promoted to
@@ -9,12 +9,32 @@ ordinary Playwright specs.
 The demo target is [SauceDemo](https://www.saucedemo.com), a public practice shop. It has
 **deliberate bugs built into some demo accounts**, so the agents find real defects on the first run.
 
-> This is the **lean** variant: 4 agents, 5 commands, 1 hook, no tracker integration, no secrets.
-> Use it to learn the architecture or to bootstrap a new project in an afternoon.
-> A **full, production-grade edition** goes further: a Claude Code plugin marketplace (project setup,
-> OS-keychain secrets, autonomous bug-fix merge requests, per-ticket testing with one human checkpoint),
-> a 10-agent crew, GitLab/Jira integration and scheduled agentic regression in CI. It is shared
-> privately. [Let's talk on LinkedIn](https://www.linkedin.com/in/olga-manuylova/) if you want to bring agentic QA to your team.
+> **This repository is a reference implementation, not a product.**
+> It is a minimal, working illustration of the Agentic QA approach, published for learning and
+> evaluation. It is intentionally limited (4 agents, 5 commands, 1 hook, no tracker integration, no
+> secrets management) and is not intended for production use as is.
+>
+> **Agentic QA Enterprise**, the full implementation, is a **separate, proprietary offering**. It is
+> **not open source**, **not contained in this repository**, and **not covered by this repository's
+> MIT license**. It is available only through a commercial engagement (licensing, implementation and
+> support). [Contact me on LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
+
+## Editions
+
+| | **agentic-qa-lean** (this repository) | **Agentic QA Enterprise** |
+|---|---|---|
+| Purpose | Reference implementation: learn and evaluate the approach | Production implementation for teams and organisations |
+| Availability | Public, open source (MIT) | Proprietary, commercial licence, private |
+| Agents / commands | 4 / 5 | 10-agent crew + plugin agents / full command set |
+| Plugin marketplace (setup, secrets, bug lifecycle, per-ticket testing) | — | ✓ |
+| Autonomous bug-fix merge requests with independent review | — | ✓ |
+| GitLab / Jira integration, guardrails for trackers | — | ✓ |
+| Credentials kept out of files (OS keychain, CI secrets) | — | ✓ |
+| Scheduled and upstream-triggered agentic regression in CI | — | ✓ |
+| Implementation support | None | Included in the engagement |
+
+Everything in this repository is free to use under the MIT license. Nothing in this repository
+grants any right to the Enterprise edition.
 
 ---
 
@@ -168,7 +188,7 @@ all files:
 - Add an environment by copying `.env.saucedemo` to `.env.staging`, changing the values and running `TEST_ENV=staging npm run env:check`.
 
 The SauceDemo password is printed on SauceDemo's own login page, so it is safe to commit. **For
-your own product, put passwords only in `.env.local`.** The full edition moves them into the OS
+your own product, put passwords only in `.env.local`.** The Enterprise edition moves them into the OS
 credential store.
 
 ## Writing test cases
@@ -257,10 +277,13 @@ The short version, with the long version in [docs/playbook.md](docs/playbook.md)
 **Olga Manuilova**, Head of Agentic Quality Engineering & AI-Native SDLC.
 Designed from hands-on experience building agentic QA for a B2B e-commerce platform in production.
 
-Interested in the full edition, a walkthrough, or rolling agentic QA out in your organisation?
-Connect on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
+Interested in **Agentic QA Enterprise**, a walkthrough, or rolling agentic QA out in your
+organisation? Connect on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
 
 ## License
 
-MIT, see [LICENSE](LICENSE). SauceDemo is a public demo application by Sauce Labs. This template is
-not affiliated with it.
+The contents of **this repository** (the reference implementation) are licensed under MIT, see
+[LICENSE](LICENSE). The MIT license does not extend to Agentic QA Enterprise, which is a separate,
+proprietary product under its own commercial terms.
+
+SauceDemo is a public demo application by Sauce Labs. This project is not affiliated with it.
