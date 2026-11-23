@@ -1,0 +1,56 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"CART-001","Add from list increments badge","Cart > Add","High","BL-CART-001","","Signed in as {{STANDARD_USER}}; empty cart","products=Sauce Labs Backpack,Sauce Labs Bike Light","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Click 'Add to cart' on 'Sauce Labs Backpack'
+[ACT] Click 'Add to cart' on 'Sauce Labs Bike Light'","[DOM] Both buttons read 'Remove'
+[DOM] Cart badge shows 2","[CONSOLE] No uncaught errors","Badge wrong; button unchanged","Menu -> Reset App State; Logout","","Agent"
+"CART-002","Remove from list decrements and hides badge","Cart > Remove","High","BL-CART-002","","Signed in as {{STANDARD_USER}}; empty cart","product=Sauce Labs Backpack","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Click 'Add to cart' on 'Sauce Labs Backpack'
+[ACT] Click 'Remove' on 'Sauce Labs Backpack'","[DOM] Button reads 'Add to cart' again
+[DOM] Cart badge not shown","[CONSOLE] No uncaught errors","Badge shows 0 or stays 1","Menu -> Reset App State; Logout","","Agent"
+"CART-003","Cart survives navigation and reload","Cart > Persistence","High","BL-CART-003","","Signed in as {{STANDARD_USER}}; empty cart","product=Sauce Labs Onesie","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Click 'Add to cart' on 'Sauce Labs Onesie'
+[ACT] Open the product 'Sauce Labs Bike Light'
+[ACT] Reload the page
+[ACT] Click the cart icon","[DOM] Badge shows 1 after reload
+[DOM] Cart lists 'Sauce Labs Onesie'","[CONSOLE] No uncaught errors
+[STORAGE] Cart state present in browser storage","Cart empty after reload","Menu -> Reset App State; Logout","","Agent"
+"CART-004","Cart page lists items with qty and price","Cart > Page","High","BL-CART-004","","Signed in as {{STANDARD_USER}}; empty cart","products=Sauce Labs Backpack,Sauce Labs Fleece Jacket","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' and 'Sauce Labs Fleece Jacket' to cart
+[ACT] Click the cart icon","[DOM] Exactly 2 cart rows
+[TEXT] Each row: QTY 1, correct name, $29.99 and $49.99","[CONSOLE] No uncaught errors","Duplicate rows; wrong price","Menu -> Reset App State; Logout","","Agent"
+"CART-005","Remove inside cart page","Cart > Remove","High","BL-CART-002","","Signed in as {{STANDARD_USER}}; 1 item in cart","product=Sauce Labs Backpack","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Remove'","[DOM] Cart has no items
+[DOM] Badge not shown
+[DOM] 'Continue Shopping' returns to products","[CONSOLE] No uncaught errors","Item stays","Menu -> Reset App State; Logout","","Agent"
+"CART-006","Reset App State clears the cart","Cart > Reset","Medium","BL-UI-001","","Signed in as {{STANDARD_USER}}; empty cart","products=any two","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add any two products to the cart
+[ACT] Open the burger menu
+[ACT] Click 'Reset App State'
+[ACT] Reload the page","[DOM] Badge not shown
+[DOM] All buttons read 'Add to cart'","[CONSOLE] No uncaught errors","Buttons still say Remove without reload (record — UX finding)","Logout","","Agent"

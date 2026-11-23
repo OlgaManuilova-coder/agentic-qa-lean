@@ -1,0 +1,24 @@
+{
+  "browser": {
+    "browserName": "firefox",
+    "isolated": true,
+    "launchOptions": {
+      "headless": false,
+      "firefoxUserPrefs": {
+        "widget.windows.window_occlusion_tracking.enabled": false
+      }
+    },
+    "contextOptions": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "recordHar": {
+        "path": "./results/lanes/firefox/session.har",
+        "content": "omit"
+      }
+    }
+  },
+  "outputDir": "./results/lanes/firefox"
+}

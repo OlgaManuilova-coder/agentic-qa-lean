@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Regression manifest: every CSV suite, its owner agent and the named selections that orchestrators run. Validate with `npm run suites:lint`; print with `npm run suites:list [-- <selection>]`.",
+    "csvFormat": "docs/csv-format.md",
+    "domains": ["smoke", "auth", "inventory", "cart", "checkout", "quirks"],
+    "layers": ["frontend"]
+  },
+  "defaults": {
+    "preferredBrowser": "playwright-chrome",
+    "fallbackChain": ["playwright-chrome", "playwright-firefox"],
+    "mobileServer": "playwright-mobile"
+  },
+  "browserPool": [
+    { "slot": 1, "serverName": "playwright-chrome", "browserName": "chromium", "status": "available" },
+    { "slot": 2, "serverName": "playwright-firefox", "browserName": "firefox", "status": "available" }
+  ],
+  "suites": [
+    {
+      "id": "000",
+      "name": "Smoke",
+      "file": "regression/suites/smoke/000-smoke.csv",
+      "domain": "smoke",
+      "layer": "frontend",
+      "priority": "P0",
+      "testCount": 5,
+      "estimatedMinutes": 4,
+      "agent": "qa-frontend-expert",
+      "tags": ["smoke", "critical-path"]
+    },
+    {
+      "id": "001",
+      "name": "Authentication",
+      "file": "regression/suites/auth/001-auth-login.csv",
+      "domain": "auth",
+      "layer": "frontend",
+      "priority": "P0",
+      "testCount": 8,
+      "estimatedMinutes": 6,
+      "agent": "qa-frontend-expert",
+      "tags": ["auth", "security"]
+    },
+    {
+      "id": "002",
+      "name": "Inventory & Sorting",
+      "file": "regression/suites/inventory/002-inventory.csv",
+      "domain": "inventory",
+      "layer": "frontend",
+      "priority": "P1",
+      "testCount": 8,
+      "estimatedMinutes": 7,
+      "agent": "qa-frontend-expert",
+      "tags": ["catalog", "sort", "responsive"]
+    },
+    {
+      "id": "003",
+      "name": "Cart",
+      "file": "regression/suites/cart/003-cart.csv",
+      "domain": "cart",
+      "layer": "frontend",
+      "priority": "P1",
+      "testCount": 6,
+      "estimatedMinutes": 6,
+      "agent": "qa-frontend-expert",
+      "tags": ["cart", "state"]
+    },
+    {
+      "id": "004",
+      "name": "Checkout",
+      "file": "regression/suites/checkout/004-checkout.csv",
+      "domain": "checkout",
+      "layer": "frontend",
+      "priority": "P0",
+      "testCount": 8,
+      "estimatedMinutes": 9,
+      "agent": "qa-frontend-expert",
+      "tags": ["checkout", "money", "critical-path"]
+    },
+    {
+      "id": "005",
+      "name": "Demo-user quirks (expected failures)",
+      "file": "regression/suites/quirks/005-demo-user-quirks.csv",
+      "domain": "quirks",
+      "layer": "frontend",
+      "priority": "P2",
+      "testCount": 5,
+      "estimatedMinutes": 6,
+      "agent": "qa-frontend-expert",
+      "tags": ["bug-hunting", "demo"]
+    }
+  ],
+  "selections": {
+    "_doc": "Rule shapes: { include: [ids] } | { all: true, exclude?: [ids] } | { where: { field: value | [values], tag?, tagAny? }, include?, exclude? }.",
+    "smoke": { "include": ["000"] },
+    "critical": { "where": { "priority": "P0" } },
+    "regression": { "all": true, "exclude": ["005"] },
+    "bug-hunt": { "where": { "tag": "bug-hunting" } },
+    "full": { "all": true }
+  }
+}

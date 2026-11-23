@@ -1,0 +1,42 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"QRK-001","problem_user: product images are correct","Quirks > problem_user","Medium","BL-INV-004","","Signed in as {{PROBLEM_USER}}","user={{PROBLEM_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{PROBLEM_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[VISUAL] Each product shows its own, distinct image","[CONSOLE] No uncaught errors","Same image on all products (known demo defect — expected FAIL)","Logout","","Agent"
+"QRK-002","problem_user: sort works","Quirks > problem_user","Medium","BL-INV-002","","Signed in as {{PROBLEM_USER}}","user={{PROBLEM_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{PROBLEM_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Choose 'Price (low to high)' in the sort dropdown","[STATE] Prices are non-decreasing top to bottom","[CONSOLE] No uncaught errors","Order unchanged (expected FAIL)","Logout","","Agent"
+"QRK-003","problem_user: checkout form keeps input","Quirks > problem_user","High","BL-CHK-001","","Signed in as {{PROBLEM_USER}}; 1 item in cart","user={{PROBLEM_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{PROBLEM_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill 'First Name' with {{CHECKOUT_FIRST_NAME}}
+[ACT] Fill 'Last Name' with {{CHECKOUT_LAST_NAME}}
+[ACT] Fill 'Zip/Postal Code' with {{CHECKOUT_POSTAL_CODE}}","[DOM] All three fields show exactly what was typed
+[STATE] 'Continue' leads to the overview","[CONSOLE] No uncaught errors","A field loses or overwrites input (expected FAIL)","Menu -> Reset App State; Logout","","Agent"
+"QRK-004","error_user: finish checkout","Quirks > error_user","Critical","BL-CHK-003","","Signed in as {{ERROR_USER}}; 1 item in cart","user={{ERROR_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{ERROR_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill the form with {{CHECKOUT_FIRST_NAME}} / {{CHECKOUT_LAST_NAME}} / {{CHECKOUT_POSTAL_CODE}}
+[ACT] Click 'Continue'
+[ACT] Click 'Finish'","[TEXT] 'Thank you for your order!' visible","[CONSOLE] No uncaught errors","Finish does nothing; console error","Menu -> Reset App State; Logout","","Agent"
+"QRK-005","visual_user: layout and prices match standard_user","Quirks > visual_user","Medium","BL-INV-001","","Signed in as {{VISUAL_USER}}","reference=standard_user screenshot","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{VISUAL_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Take a full-page screenshot
+[NOTE] Compare against the same page for {{STANDARD_USER}}","[VISUAL] Same layout, images and prices as for standard_user","[CONSOLE] No uncaught errors","Misaligned elements; different prices/images","Logout","","Agent"

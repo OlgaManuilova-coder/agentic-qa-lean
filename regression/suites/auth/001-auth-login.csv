@@ -1,0 +1,44 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"AUTH-001","Standard user signs in","Login > Happy path","Critical","BL-AUTH-001","","Fresh isolated browser","user={{STANDARD_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[URL] Ends with /inventory.html
+[DOM] Products title visible","[CONSOLE] No uncaught errors
+[NETWORK] No 4xx/5xx on same-origin requests
+[STORAGE] A session cookie is set","Error banner","Logout","tests/smoke.spec.js","Automated"
+"AUTH-002","Locked-out user is rejected","Login > Negative","High","BL-AUTH-002","ECL-AUTH-locked","Fresh isolated browser","user={{LOCKED_OUT_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{LOCKED_OUT_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'","[DOM] Error banner visible
+[TEXT] Error says the user has been locked out
+[URL] Still on the login page","[CONSOLE] No uncaught errors","User reaches inventory","","","Agent"
+"AUTH-003","Empty username","Login > Validation","Medium","BL-AUTH-003","","Fresh isolated browser","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Click 'Login' with both fields empty","[TEXT] Error: 'Username is required'","[CONSOLE] No uncaught errors","No error; generic error","","","Agent"
+"AUTH-004","Empty password","Login > Validation","Medium","BL-AUTH-003","","Fresh isolated browser","user={{STANDARD_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Click 'Login'","[TEXT] Error: 'Password is required'","[CONSOLE] No uncaught errors","No error; signs in without password","","","Agent"
+"AUTH-005","Wrong password","Login > Negative","High","BL-AUTH-004","","Fresh isolated browser","user={{STANDARD_USER}};password=wrong_password_{{timestamp}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type wrong_password_{{timestamp}} into 'Password'
+[ACT] Click 'Login'","[TEXT] Error says username and password do not match
+[URL] Still on the login page
+[DOM] The typed password is not shown in the error","[CONSOLE] No uncaught errors","Signs in; password echoed","","","Agent"
+"AUTH-006","Error banner can be dismissed","Login > UX","Low","BL-AUTH-003","","Fresh isolated browser","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Click 'Login' with both fields empty
+[ACT] Click the error banner's close (X) button","[DOM] Error banner disappears
+[DOM] Inputs no longer highlighted as invalid","[CONSOLE] No uncaught errors","Banner cannot be closed","","","Agent"
+"AUTH-007","Protected pages require login","Login > Access control","Critical","BL-AUTH-005","ECL-AUTH-deeplink","Fresh isolated browser, not signed in","pages=/inventory.html,/cart.html,/checkout-step-one.html","[NAV] Navigate to {{FRONT_URL}}/inventory.html
+[ASSERT] Note URL and error
+[NAV] Navigate to {{FRONT_URL}}/cart.html
+[ASSERT] Note URL and error
+[NAV] Navigate to {{FRONT_URL}}/checkout-step-one.html
+[ASSERT] Note URL and error","[URL] Every attempt lands on the login page
+[TEXT] Each error names the page that was requested","[CONSOLE] No uncaught errors","Any protected page renders anonymously","","","Agent"
+"AUTH-008","Slow user sign-in time","Login > Performance","Medium","BL-PERF-001","","Fresh isolated browser","user={{PERFORMANCE_GLITCH_USER}}","[NOTE] Record the time just before clicking Login
+[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{PERFORMANCE_GLITCH_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[STATE] Measured click-to-Products time is under 3 seconds (record the number either way)","[PERF] Record the time to Products page
+[CONSOLE] No uncaught errors","Sign-in takes >3s (expected for this demo user — report as FAIL with timing)","Logout","","Agent"

@@ -1,0 +1,21 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": true,
+    "launchOptions": {
+      "headless": false
+    },
+    "contextOptions": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "locale": "en-US",
+      "recordHar": {
+        "path": "./results/lanes/chrome/session.har",
+        "content": "omit"
+      }
+    }
+  },
+  "outputDir": "./results/lanes/chrome"
+}

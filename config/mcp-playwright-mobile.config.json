@@ -1,0 +1,24 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": true,
+    "launchOptions": {
+      "headless": false
+    },
+    "contextOptions": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "locale": "en-US",
+      "recordHar": {
+        "path": "./results/lanes/mobile/session.har",
+        "content": "omit"
+      },
+      "isMobile": true,
+      "hasTouch": true,
+      "deviceScaleFactor": 3
+    }
+  },
+  "outputDir": "./results/lanes/mobile"
+}

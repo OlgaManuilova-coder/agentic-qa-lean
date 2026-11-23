@@ -1,0 +1,59 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"INV-001","Inventory lists complete product cards","Inventory > List","High","BL-INV-001","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[DOM] 6 product cards visible
+[DOM] Each card has name, description, price, image and 'Add to cart'
+[TEXT] Every price matches $<digits>.<2 digits>","[CONSOLE] No uncaught errors
+[NETWORK] No broken image requests","Card missing a field; broken image","Logout","","Agent"
+"INV-002","Default sort is Name (A to Z)","Inventory > Sort","Medium","BL-INV-002","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[DOM] Sort dropdown shows 'Name (A to Z)'
+[STATE] Product names are in ascending alphabetical order","[CONSOLE] No uncaught errors","Unsorted list","Logout","","Agent"
+"INV-003","Sort by Name (Z to A)","Inventory > Sort","Medium","BL-INV-002","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Choose 'Name (Z to A)' in the sort dropdown","[STATE] Product names are in descending alphabetical order","[CONSOLE] No uncaught errors","Order unchanged","Logout","","Agent"
+"INV-004","Sort by price low to high","Inventory > Sort","Medium","BL-INV-002","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Choose 'Price (low to high)' in the sort dropdown","[STATE] Prices are non-decreasing top to bottom
+[TEXT] First product costs $7.99","[CONSOLE] No uncaught errors","Order unchanged","Logout","tests/smoke.spec.js","Automated"
+"INV-005","Sort by price high to low","Inventory > Sort","Medium","BL-INV-002","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Choose 'Price (high to low)' in the sort dropdown","[STATE] Prices are non-increasing top to bottom
+[TEXT] First product costs $49.99","[CONSOLE] No uncaught errors","Order unchanged","Logout","","Agent"
+"INV-006","Product detail matches list","Inventory > Detail","Medium","BL-INV-003","","Signed in as {{STANDARD_USER}}","product=Sauce Labs Bolt T-Shirt","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ASSERT] Note name, description and price of 'Sauce Labs Bolt T-Shirt' in the list
+[ACT] Click the product name
+[ACT] Click 'Back to products'","[TEXT] Detail page shows the same name, description and price
+[URL] Back to products returns to /inventory.html","[CONSOLE] No uncaught errors","Different data on detail","Logout","","Agent"
+"INV-007","Each product has its own image","Inventory > Images","Medium","BL-INV-004","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[VISUAL] Six different images, each matching its product
+[DOM] No broken images","[CONSOLE] No uncaught errors
+[NETWORK] All image requests return 200","Same image on several products","Logout","","Agent"
+"INV-008","Inventory usable on mobile viewport","Inventory > Responsive","Medium","BL-UI-002","","Mobile lane (390x844, touch); signed in as {{STANDARD_USER}}","lane=playwright-mobile","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Scroll to the last product
+[ACT] Open the burger menu","[VISUAL] No horizontal scrollbar; cards fit the width
+[DOM] Menu and cart icon reachable","[CONSOLE] No uncaught errors","Horizontal scroll; overlapping elements","Logout","","Agent"

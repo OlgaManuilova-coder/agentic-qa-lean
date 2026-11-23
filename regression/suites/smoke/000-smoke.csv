@@ -1,0 +1,46 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"SMK-001","Login page renders","Smoke > Login","Critical","BL-AUTH-001","","Fresh isolated browser","url={{FRONT_URL}}","[NAV] Navigate to {{FRONT_URL}}/","[DOM] 'Username' and 'Password' inputs visible
+[DOM] 'Login' button visible and enabled","[CONSOLE] No uncaught errors
+[NETWORK] No 4xx/5xx on same-origin requests","Blank page; spinner >5s; 5xx","","","Agent"
+"SMK-002","Standard user signs in","Smoke > Login","Critical","BL-AUTH-001","","Fresh isolated browser","user={{STANDARD_USER}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page","[URL] Ends with /inventory.html
+[DOM] Products title visible
+[DOM] At least one product card visible","[CONSOLE] No uncaught errors
+[NETWORK] No 4xx/5xx on same-origin requests","Error banner; stays on login page","Logout","","Agent"
+"SMK-003","Add one product to cart","Smoke > Cart","Critical","BL-CART-001","","Signed in as {{STANDARD_USER}}; empty cart","product=Sauce Labs Backpack","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Click 'Add to cart' on 'Sauce Labs Backpack'","[DOM] Button on 'Sauce Labs Backpack' reads 'Remove'
+[DOM] Cart badge shows 1","[CONSOLE] No uncaught errors","Badge does not change","Menu -> Reset App State; Logout","","Agent"
+"SMK-004","Complete a checkout","Smoke > Checkout","Critical","BL-CHK-002; BL-CHK-003","","Signed in as {{STANDARD_USER}}; empty cart","product=Sauce Labs Backpack;first={{CHECKOUT_FIRST_NAME}};last={{CHECKOUT_LAST_NAME}};zip={{CHECKOUT_POSTAL_CODE}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Click 'Add to cart' on 'Sauce Labs Backpack'
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill 'First Name' with {{CHECKOUT_FIRST_NAME}}
+[ACT] Fill 'Last Name' with {{CHECKOUT_LAST_NAME}}
+[ACT] Fill 'Zip/Postal Code' with {{CHECKOUT_POSTAL_CODE}}
+[ACT] Click 'Continue'
+[ASSERT] Read Item total, Tax and Total on the overview
+[ACT] Click 'Finish'","[TEXT] Item total = $29.99; Tax = $2.40; Total = $32.39
+[URL] Ends with /checkout-complete.html
+[TEXT] 'Thank you for your order!' visible
+[DOM] Cart badge not shown","[CONSOLE] No uncaught errors
+[NETWORK] No 4xx/5xx on same-origin requests","Totals do not add up; Finish does nothing","Logout","","Agent"
+"SMK-005","Logout ends the session","Smoke > Session","Critical","BL-AUTH-006","","Signed in as {{STANDARD_USER}}","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Open the burger menu
+[ACT] Click 'Logout'
+[NAV] Navigate to {{FRONT_URL}}/inventory.html","[URL] Lands on the login page
+[TEXT] Error mentions '/inventory.html' and being logged in","[CONSOLE] No uncaught errors","Inventory is shown after logout","","","Agent"

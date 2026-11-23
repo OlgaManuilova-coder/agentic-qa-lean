@@ -1,0 +1,25 @@
+{
+  "name": "agentic-qa-lean",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lean template of an agentic QA system: natural-language CSV test suites executed by Claude Code agents through Playwright MCP. Demo target: SauceDemo.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "env:check": "node scripts/env-check.mjs",
+    "suites:lint": "node scripts/suites-lint.mjs",
+    "suites:list": "node scripts/suites-list.mjs",
+    "regression:plan": "node scripts/plan-run.mjs",
+    "specs:run": "playwright test",
+    "specs:list": "playwright test --list",
+    "test": "node --test \"scripts/unit/*.test.mjs\"",
+    "check": "npm run env:check && npm run suites:lint && npm test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1"
+  },
+  "license": "MIT",
+  "author": "Olga Manuilova — Head of Agentic Quality Engineering & AI-Native SDLC"
+}

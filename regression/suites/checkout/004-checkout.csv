@@ -1,0 +1,92 @@
+"ID","Title","Section","Priority","Business_Rule","Edge_Case_Refs","Preconditions","Test_Data","Steps","Assertions","Cross_Layer_Checks","Failure_Signals","Cleanup","References","Automation_Status"
+"CHK-001","First name required","Checkout > Validation","High","BL-CHK-001","","Signed in as {{STANDARD_USER}}; 1 item in cart","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Click 'Continue' with all fields empty","[TEXT] 'Error: First Name is required'
+[URL] Still on /checkout-step-one.html","[CONSOLE] No uncaught errors","Proceeds without data","Menu -> Reset App State; Logout","","Agent"
+"CHK-002","Last name required","Checkout > Validation","High","BL-CHK-001","","Signed in as {{STANDARD_USER}}; 1 item in cart","first={{CHECKOUT_FIRST_NAME}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill 'First Name' with {{CHECKOUT_FIRST_NAME}}
+[ACT] Click 'Continue'","[TEXT] 'Error: Last Name is required'","[CONSOLE] No uncaught errors","Wrong field reported","Menu -> Reset App State; Logout","","Agent"
+"CHK-003","Postal code required","Checkout > Validation","High","BL-CHK-001","","Signed in as {{STANDARD_USER}}; 1 item in cart","first={{CHECKOUT_FIRST_NAME}};last={{CHECKOUT_LAST_NAME}}","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill 'First Name' with {{CHECKOUT_FIRST_NAME}}
+[ACT] Fill 'Last Name' with {{CHECKOUT_LAST_NAME}}
+[ACT] Click 'Continue'","[TEXT] 'Error: Postal Code is required'","[CONSOLE] No uncaught errors","Proceeds without postal code","Menu -> Reset App State; Logout","","Agent"
+"CHK-004","Totals and tax are correct for several items","Checkout > Totals","Critical","BL-CHK-002","ECL-CHK-rounding","Signed in as {{STANDARD_USER}}; empty cart","products=Sauce Labs Backpack(29.99),Sauce Labs Bolt T-Shirt(15.99),Sauce Labs Onesie(7.99)","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack', 'Sauce Labs Bolt T-Shirt' and 'Sauce Labs Onesie' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill the form with {{CHECKOUT_FIRST_NAME}} / {{CHECKOUT_LAST_NAME}} / {{CHECKOUT_POSTAL_CODE}}
+[ACT] Click 'Continue'","[TEXT] Item total: $53.97
+[TEXT] Tax: $4.32
+[TEXT] Total: $58.29
+[STATE] Recompute: total = item total + round(item total × 0.08, 2)","[CONSOLE] No uncaught errors","Rounding error; tax not 8%","Menu -> Reset App State; Logout","","Candidate"
+"CHK-005","Finish completes the order and empties the cart","Checkout > Complete","Critical","BL-CHK-003","","Signed in as {{STANDARD_USER}}; empty cart","product=Sauce Labs Bike Light","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Bike Light' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill the form with {{CHECKOUT_FIRST_NAME}} / {{CHECKOUT_LAST_NAME}} / {{CHECKOUT_POSTAL_CODE}}
+[ACT] Click 'Continue'
+[ACT] Click 'Finish'
+[ACT] Click 'Back Home'","[TEXT] 'Thank you for your order!'
+[DOM] Badge not shown
+[DOM] All buttons read 'Add to cart' after Back Home","[CONSOLE] No uncaught errors
+[NETWORK] No 4xx/5xx on same-origin requests","Cart not emptied","Logout","tests/smoke.spec.js","Automated"
+"CHK-006","Cancel on step one returns to cart","Checkout > Navigation","Medium","BL-CHK-004","","Signed in as {{STANDARD_USER}}; 1 item in cart","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Click 'Cancel'","[URL] Ends with /cart.html
+[DOM] Cart still lists 'Sauce Labs Backpack'","[CONSOLE] No uncaught errors","Cart emptied on cancel","Menu -> Reset App State; Logout","","Agent"
+"CHK-007","Cancel on overview returns to inventory","Checkout > Navigation","Medium","BL-CHK-004","","Signed in as {{STANDARD_USER}}; 1 item in cart","","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Fill the form with {{CHECKOUT_FIRST_NAME}} / {{CHECKOUT_LAST_NAME}} / {{CHECKOUT_POSTAL_CODE}}
+[ACT] Click 'Continue'
+[ACT] Click 'Cancel'","[URL] Ends with /inventory.html
+[DOM] Badge still shows 1","[CONSOLE] No uncaught errors","Cart emptied on cancel","Menu -> Reset App State; Logout","","Agent"
+"CHK-008","Whitespace-only names are rejected","Checkout > Edge cases","Low","BL-CHK-001","ECL-FORM-whitespace","Signed in as {{STANDARD_USER}}; 1 item in cart","first="" "";last="" "";zip="" ""","[NAV] Navigate to {{FRONT_URL}}/
+[ACT] Type {{STANDARD_USER}} into 'Username'
+[ACT] Type {{USER_PASSWORD}} into 'Password'
+[ACT] Click 'Login'
+[WAIT] Wait for the Products page
+[ACT] Add 'Sauce Labs Backpack' to cart
+[ACT] Click the cart icon
+[ACT] Click 'Checkout'
+[ACT] Type a single space into First Name, Last Name and Postal Code
+[ACT] Click 'Continue'","[STATE] Checkout does not continue; a required-field error is shown","[CONSOLE] No uncaught errors","Order proceeds with blank data (expected weakness of the demo — report as FAIL/Low or AMBIGUOUS)","Menu -> Reset App State; Logout","","Agent"

@@ -1,0 +1,28 @@
+{
+  "enableAllProjectMcpServers": true,
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(node scripts/*)",
+      "mcp__playwright-chrome",
+      "mcp__playwright-firefox",
+      "mcp__playwright-mobile"
+    ],
+    "deny": [
+      "Read(./.env.local)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__.+__(browser_evaluate|browser_run_code|browser_run_code_unsafe|evaluate_script)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/enforce-real-user.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}

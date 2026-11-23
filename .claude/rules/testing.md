@@ -1,0 +1,14 @@
+# Always-on testing rules
+
+Loaded into every session and every sub-agent — keep this file SHORT. Task-specific detail lives in
+`.claude/knowledge/` and is cited, not copied.
+
+- Every QA agent reads `.claude/knowledge/shared-instructions.md` first.
+- URLs and accounts come from env variables (`npm run env:check`), never hard-coded.
+- One browser MCP server per agent; never share a browser between parallel agents.
+- Max parallel browser agents = `MAX_LANES` (default 2).
+- Drive the UI like a real user; JS evaluation is hook-blocked except read-only measurement.
+- Verdicts: PASS / FAIL / AMBIGUOUS / BLOCKED. A BL-* violation is a FAIL even if no step asked.
+- No evidence (screenshot + expected vs actual) ⇒ no FAIL.
+- Everything a run writes goes under `results/<RUN_ID>/` (gitignored).
+- Never write passwords or tokens into reports, CSVs or commits.
