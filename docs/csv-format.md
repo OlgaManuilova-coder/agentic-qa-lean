@@ -20,7 +20,7 @@ or generate the files with a script. Do not hand-edit quoting in a plain text ed
 | `Section` | | `Area > Sub-area`, for grouping in reports | `Checkout > Totals` |
 | `Priority` | ✔ | `Critical` · `High` · `Medium` · `Low` | `Critical` |
 | `Business_Rule` | | `;`-separated BL ids that **must exist** in the oracle | `BL-CHK-002; BL-CHK-003` |
-| `Edge_Case_Refs` | | Free ids into an edge-case library (full template) | `ECL-CHK-rounding` |
+| `Edge_Case_Refs` | | Free ids into an edge-case library (full edition) | `ECL-CHK-rounding` |
 | `Preconditions` | | State the case needs; if not met, the case is BLOCKED | `Signed in as {{STANDARD_USER}}; empty cart` |
 | `Test_Data` | | `key=value;…`, documentation for humans and agents | `product=Sauce Labs Backpack` |
 | `Steps` | ✔ | One line per step, each starting with a step tag | see below |

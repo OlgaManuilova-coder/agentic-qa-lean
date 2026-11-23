@@ -1,5 +1,5 @@
 ---
-description: Reproduce a bug from a description, collect evidence and write a structured bug report (local markdown; the full template files it into a tracker).
+description: Reproduce a bug from a description, collect evidence and write a structured bug report (local markdown; the full edition files it into a tracker).
 argument-hint: "<bug description> | <case id from a run, e.g. CHK-004 REG-2026-01-01-1200>"
 ---
 

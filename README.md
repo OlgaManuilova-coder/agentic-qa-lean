@@ -11,9 +11,10 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 
 > This is the **lean** variant: 4 agents, 5 commands, 1 hook, no tracker integration, no secrets.
 > Use it to learn the architecture or to bootstrap a new project in an afternoon.
-> The **full** variant (`agentic-qa-full`) adds a Claude Code plugin marketplace (setup, secrets,
-> bug lifecycle, per-ticket testing), a 10-agent crew, tracker hooks and a GitLab pipeline for
-> scheduled agentic runs.
+> A **full, production-grade edition** goes further: a Claude Code plugin marketplace (project setup,
+> OS-keychain secrets, autonomous bug-fix merge requests, per-ticket testing with one human checkpoint),
+> a 10-agent crew, GitLab/Jira integration and scheduled agentic regression in CI. It is shared
+> privately. [Let's talk on LinkedIn](https://www.linkedin.com/in/olga-manuylova/) if you want to bring agentic QA to your team.
 
 ---
 
@@ -167,7 +168,7 @@ all files:
 - Add an environment by copying `.env.saucedemo` to `.env.staging`, changing the values and running `TEST_ENV=staging npm run env:check`.
 
 The SauceDemo password is printed on SauceDemo's own login page, so it is safe to commit. **For
-your own product, put passwords only in `.env.local`.** The full template moves them into the OS
+your own product, put passwords only in `.env.local`.** The full edition moves them into the OS
 credential store.
 
 ## Writing test cases
@@ -253,8 +254,11 @@ The short version, with the long version in [docs/playbook.md](docs/playbook.md)
 
 ## Author
 
-**Olga Manuilova** — Head of Agentic Quality Engineering & AI-Native SDLC.
+**Olga Manuilova**, Head of Agentic Quality Engineering & AI-Native SDLC.
 Designed from hands-on experience building agentic QA for a B2B e-commerce platform in production.
+
+Interested in the full edition, a walkthrough, or rolling agentic QA out in your organisation?
+Connect on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
 
 ## License
 

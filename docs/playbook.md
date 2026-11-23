@@ -91,9 +91,10 @@ Then update the references in `.claude/agents/*.md` (search for `saucedemo.md`).
 | A run takes much longer than planned | Re-tune `estimatedMinutes`, add a lane, or promote cases to specs |
 | `CLAUDE.md` or rules keep growing | Move the content down a tier into `.claude/knowledge/` and cite it |
 
-## When to move to the full template
+## When to move to the full edition
 
 Move when you need any of these: bugs filed automatically to GitLab Issues or Jira; credentials kept
 out of files; per-ticket testing flows with a human approval point; an API or backend specialist;
-autonomous bug-fix MRs; scheduled agentic regression in CI. The full template has all of them on the
-same foundation, so your suites, oracle and domain file carry over unchanged.
+autonomous bug-fix MRs; scheduled agentic regression in CI. The full edition has all of them on the
+same foundation, so your suites, oracle and domain file carry over unchanged. It is shared privately:
+get in touch on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
