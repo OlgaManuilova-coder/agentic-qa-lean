@@ -1,6 +1,6 @@
 {
   "name": "agentic-qa-lean",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Lean template of an agentic QA system: natural-language CSV test suites executed by Claude Code agents through Playwright MCP. Demo target: SauceDemo.",
   "type": "module",
