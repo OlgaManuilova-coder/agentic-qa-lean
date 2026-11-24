@@ -1,0 +1,82 @@
+{
+  "runId": "SMOKE-2026-11-23-live",
+  "suiteId": "000",
+  "env": "saucedemo",
+  "browser": "Claude desktop app built-in browser (real Chromium, real network)",
+  "summary": {
+    "total": 5,
+    "pass": 5,
+    "fail": 0,
+    "ambiguous": 0,
+    "blocked": 0
+  },
+  "cases": [
+    {
+      "id": "SMK-001",
+      "verdict": "PASS",
+      "rule": "BL-AUTH-001",
+      "evidence": [
+        "textbox Username, textbox Password, button Login present"
+      ]
+    },
+    {
+      "id": "SMK-002",
+      "verdict": "PASS",
+      "rule": "BL-AUTH-001",
+      "evidence": [
+        "URL /inventory.html",
+        "6 product cards: Backpack $29.99, Bike Light $9.99, Bolt T-Shirt $15.99, Fleece Jacket $49.99, Onesie $7.99, Test.allTheThings() T-Shirt (Red) $15.99"
+      ]
+    },
+    {
+      "id": "SMK-003",
+      "verdict": "PASS",
+      "rule": "BL-CART-001",
+      "evidence": [
+        "Backpack button -> Remove",
+        "cart badge = 1"
+      ]
+    },
+    {
+      "id": "SMK-004",
+      "verdict": "PASS",
+      "rule": "BL-CHK-002; BL-CHK-003",
+      "evidence": [
+        "Item total $29.99, Tax $2.40, Total $32.39",
+        "Thank you for your order!",
+        "no cart badge"
+      ]
+    },
+    {
+      "id": "SMK-005",
+      "verdict": "PASS",
+      "rule": "BL-AUTH-006",
+      "evidence": [
+        "after Logout, /inventory.html -> login page with 'You can only access '/inventory.html' when you are logged in.'"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "verdict": "AMBIGUOUS",
+      "note": "Deep links (/cart.html, /inventory.html) are served with HTTP 404 by the static host and rendered by the SPA fallback; 2 console errors 'Failed to load resource: 404'. Invisible to users, visible to monitoring/SEO."
+    },
+    {
+      "verdict": "AMBIGUOUS",
+      "note": "New UI surface on checkout-complete: 'Generate PDF order' button, not in domain knowledge. Add to .claude/knowledge/domain/saucedemo.md and consider a case."
+    }
+  ],
+  "bugHunt": [
+    {
+      "id": "QRK-001",
+      "verdict": "FAIL (expected, known demo defect)",
+      "rule": "BL-INV-004",
+      "severity": "Medium",
+      "account": "PROBLEM_USER",
+      "expected": "each product shows its own image",
+      "actual": "all 6 products use /assets/sl-404-Cq1a9k9X.jpg"
+    }
+  ],
+  "startedAt": "2026-11-23T13:05:00Z",
+  "finishedAt": "2026-11-23T13:19:00Z"
+}

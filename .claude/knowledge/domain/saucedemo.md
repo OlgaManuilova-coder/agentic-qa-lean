@@ -13,9 +13,9 @@ agent reports the difference as AMBIGUOUS so a human can update this file.
 | Inventory | `/inventory.html` | Product list, sort dropdown, cart icon with badge, burger menu |
 | Item detail | `/inventory-item.html?id=<n>` | Name, description, price, image, Add/Remove, Back to products |
 | Cart | `/cart.html` | Cart items, Continue Shopping, Checkout |
-| Checkout: info | `/checkout-step-one.html` | First Name, Last Name, Postal Code, Cancel, Continue |
+| Checkout: info | `/checkout-step-one.html` | First Name, Last Name, Zip/Postal Code (visible label, observed 2026-11-23), Cancel, Continue |
 | Checkout: overview | `/checkout-step-two.html` | Items, payment/shipping info, Item total, Tax, Total, Cancel, Finish |
-| Checkout: complete | `/checkout-complete.html` | Thank-you message, Back Home |
+| Checkout: complete | `/checkout-complete.html` | Thank-you message, Back Home, Generate PDF order (new, observed 2026-11-23: no case yet) |
 
 Burger menu items: All Items, About, Logout, Reset App State.
 

@@ -44,12 +44,12 @@
 [ACT] Click 'Remove'","[DOM] Cart has no items
 [DOM] Badge not shown
 [DOM] 'Continue Shopping' returns to products","[CONSOLE] No uncaught errors","Item stays","Menu -> Reset App State; Logout","","Agent"
-"CART-006","Reset App State clears the cart","Cart > Reset","Medium","BL-UI-001","","Signed in as {{STANDARD_USER}}; empty cart","products=any two","[NAV] Navigate to {{FRONT_URL}}/
+"CART-006","Reset App State clears the cart","Cart > Reset","Medium","BL-UI-001","","Signed in as {{STANDARD_USER}}; empty cart","products=Sauce Labs Backpack,Sauce Labs Bike Light","[NAV] Navigate to {{FRONT_URL}}/
 [ACT] Type {{STANDARD_USER}} into 'Username'
 [ACT] Type {{USER_PASSWORD}} into 'Password'
 [ACT] Click 'Login'
 [WAIT] Wait for the Products page
-[ACT] Add any two products to the cart
+[ACT] Click 'Add to cart' on 'Sauce Labs Backpack' and on 'Sauce Labs Bike Light'
 [ACT] Open the burger menu
 [ACT] Click 'Reset App State'
 [ACT] Reload the page","[DOM] Badge not shown

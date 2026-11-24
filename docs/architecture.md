@@ -43,6 +43,7 @@ flowchart TB
 | Runner and expert agents | Executing and judging cases in one lane | Deciding GO / NO-GO |
 | Knowledge files | Rules, domain judgment, shared procedures | Being loaded unconditionally |
 | Hooks | Hard guardrails that a prompt cannot override | Business logic |
+| Skills | Methods (test design, case review, prompt review), each with a deterministic helper | Orchestration |
 | Scripts | Deterministic work: config, validation, planning | Judgment |
 | CSV suites + manifest | What to test, and who owns it | How to drive the browser |
 | MCP lanes | An isolated browser per agent | Shared state |
@@ -108,7 +109,16 @@ and blocks everything else.
 FAIL needs a screenshot and expected vs actual. Otherwise it is AMBIGUOUS. This keeps reports
 trustworthy enough that humans act on them.
 
-## 4. Promotion: from CSV case to Playwright spec
+## 4. Keeping the system healthy
+
+The prompts are code an LLM executes. Two loops keep them, and the cases, from rotting:
+
+- **Cases:** `npm run review:tests` (script) + `/qa-review-tests` (judgement) against `cases-that-catch-bugs.md`.
+- **Prompts:** `npm run prompt:facts` (script) + `/prompt-review` (judgement) against `authoring-standard.md`.
+
+The pattern is the same in both: **facts by script first, judgement second, evidence for every finding.**
+
+## 5. Promotion: from CSV case to Playwright spec
 
 ```
 Agent  ──(passes consistently, steps are stable)──▶  Candidate  ──(spec written)──▶  Automated
@@ -122,7 +132,7 @@ Agent  ──(passes consistently, steps are stable)──▶  Candidate  ──
 Agents are good at changing, ambiguous and exploratory work. Specs are good at fast, cheap,
 deterministic regression. Promotion moves each case to where it is cheapest to keep it.
 
-## 5. Extending
+## 6. Extending
 
 | You want | Add |
 |---|---|

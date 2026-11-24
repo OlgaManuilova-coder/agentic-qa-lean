@@ -60,7 +60,7 @@ Then update the references in `.claude/agents/*.md` (search for `saucedemo.md`).
 1. Write `regression/suites/smoke/000-smoke.csv` with 5–10 end-to-end cases that cover the critical paths.
 2. Register it in `config/test-suites.json` and run `npm run suites:lint`.
 3. Run `/qa-smoke` three times.
-4. For every flaky or AMBIGUOUS result, fix the **case** (clearer step, exact assertion, missing precondition), not the agent.
+4. For every flaky or AMBIGUOUS result, fix the **case** (clearer step, exact assertion, missing precondition), not the agent. `/qa-review-tests 000` finds most of these before you run.
 
 **Done when** three consecutive smoke runs give the same verdicts.
 
@@ -90,6 +90,8 @@ Then update the references in `.claude/agents/*.md` (search for `saucedemo.md`).
 | A bug escaped to production | Add a BL rule or heuristic, then a case |
 | A run takes much longer than planned | Re-tune `estimatedMinutes`, add a lane, or promote cases to specs |
 | `CLAUDE.md` or rules keep growing | Move the content down a tier into `.claude/knowledge/` and cite it |
+| You edited an agent, command or skill | `/prompt-review <name>` before committing |
+| A bug escaped the suites | Add a case or a written reason (`cases-that-catch-bugs.md` §7) |
 
 ## When to move to Agentic QA Enterprise
 

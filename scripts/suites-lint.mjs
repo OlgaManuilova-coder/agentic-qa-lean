@@ -9,6 +9,20 @@ import { expandSelection, loadKnownRules, loadManifest, validateSuiteCsv } from 
 
 const errors = [];
 const manifest = loadManifest();
+
+// --file <csv>: validate one CSV outside the manifest (e.g. proposed rows from /qa-test-design).
+const fileArg = process.argv.indexOf('--file');
+if (fileArg > 0) {
+  const f = process.argv[fileArg + 1];
+  const { values: v } = buildEnv();
+  const { errors: e, records } = validateSuiteCsv(readFileSync(join(ROOT, f), 'utf8'), { file: f, knownVars: Object.keys(v), knownRules: loadKnownRules() });
+  if (e.length) {
+    console.error(e.map((x) => `✗ ${x}`).join('\n'));
+    process.exit(1);
+  }
+  console.log(`suites:lint --file OK — ${records.length} case(s) in ${f}`);
+  process.exit(0);
+}
 const { values } = buildEnv();
 const knownVars = Object.keys(values);
 const knownRules = loadKnownRules();

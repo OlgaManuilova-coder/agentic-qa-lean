@@ -11,7 +11,7 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 
 > **This repository is a reference implementation, not a product.**
 > It is a minimal, working illustration of the Agentic QA approach, published for learning and
-> evaluation. It is intentionally limited (4 agents, 5 commands, 1 hook, no tracker integration, no
+> evaluation. It is intentionally limited (4 agents, 5 commands, 3 skills, 1 hook, no tracker integration, no
 > secrets management) and is not intended for production use as is.
 >
 > **Agentic QA Enterprise**, the full implementation, is a **separate, proprietary offering**. It is
@@ -25,7 +25,8 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 |---|---|---|
 | Purpose | Reference implementation: learn and evaluate the approach | Production implementation for teams and organisations |
 | Availability | Public, open source (MIT) | Proprietary, commercial licence, private |
-| Agents / commands | 4 / 5 | 10-agent crew + plugin agents / full command set |
+| Agents / commands / skills | 4 / 5 / 3 (light versions) | 10-agent crew + plugin agents / full command set / full methodology library |
+| Prompt quality loop (review, heal, evidence-based improve) | Review only | ✓ |
 | Plugin marketplace (setup, secrets, bug lifecycle, per-ticket testing) | — | ✓ |
 | Autonomous bug-fix merge requests with independent review | — | ✓ |
 | GitLab / Jira integration, guardrails for trackers | — | ✓ |
@@ -48,11 +49,13 @@ grants any right to the Enterprise edition.
 6. [Configuration](#configuration)
 7. [Writing test cases](#writing-test-cases)
 8. [Agents and commands](#agents-and-commands)
-9. [Guardrails](#guardrails)
-10. [CI on GitLab](#ci-on-gitlab)
-11. [Adapting the template to your product](#adapting-the-template-to-your-product)
-12. [Troubleshooting](#troubleshooting)
-13. [Further reading](#further-reading)
+9. [Skills: methods and quality](#skills-methods-and-quality)
+10. [A real run, recorded](#a-real-run-recorded)
+11. [Guardrails](#guardrails)
+12. [CI on GitLab](#ci-on-gitlab)
+13. [Adapting the template to your product](#adapting-the-template-to-your-product)
+14. [Troubleshooting](#troubleshooting)
+15. [Further reading](#further-reading)
 
 ---
 
@@ -66,7 +69,7 @@ grants any right to the Enterprise edition.
 | Fast, cheap, deterministic | Slower and costs tokens, but explores and explains |
 
 The two complement each other. Here the agents explore and judge, and the cheap deterministic specs
-guard what is already stable (see [Promotion](docs/architecture.md#promotion-from-csv-case-to-playwright-spec)).
+guard what is already stable (see [Promotion](docs/architecture.md#5-promotion-from-csv-case-to-playwright-spec)).
 
 ## How it works
 
@@ -137,6 +140,9 @@ screenshots.
 | Run a whole selection in parallel with a sign-off | `/qa-regression critical` · `regression` · `full` |
 | Explore an area without cases | `/qa-exploratory "checkout totals with 6 items"` |
 | Turn an observation into a bug report | `/qa-bug "tax is off by a cent for 3 items"` |
+| Design cases for a rule or feature | `/qa-test-design BL-CHK-001` |
+| Check whether cases can catch bugs | `/qa-review-tests 004` (first pass: `npm run review:tests`) |
+| Review an agent, command or skill you changed | `/prompt-review changed` (facts: `npm run prompt:facts -- all`) |
 | Run the deterministic specs | `npm run specs:run` |
 | See the lane plan without running | `npm run regression:plan -- full` |
 
@@ -153,9 +159,12 @@ Everything a run produces goes to `results/<RUN_ID>/`, which is gitignored: per-
 │   ├── agents/                   # qa-lead-orchestrator, regression-orchestrator,
 │   │                             # test-runner-agent, qa-frontend-expert
 │   ├── commands/                 # /qa-smoke /qa-run /qa-regression /qa-exploratory /qa-bug
+│   ├── skills/                   # qa-test-design · qa-review-tests · prompt-review
 │   ├── rules/testing.md          # always-on rules (kept short: paid on every turn)
 │   ├── knowledge/                # loaded on demand
 │   │   ├── shared-instructions.md   # verdicts, evidence, output contract
+│   │   ├── cases-that-catch-bugs.md # what makes a test case worth keeping
+│   │   ├── authoring-standard.md    # how to write agents, commands and skills
 │   │   ├── oracles/business-logic.md
 │   │   └── domain/saucedemo.md
 │   ├── hooks/enforce-real-user.mjs
@@ -166,7 +175,8 @@ Everything a run produces goes to `results/<RUN_ID>/`, which is gitignored: per-
 ├── regression/suites/<domain>/NNN-name.csv
 ├── tests/*.spec.js               # promoted deterministic specs
 ├── test-data/aliases.<env>.json
-├── scripts/                      # env loader, linters, planner (+ unit tests)
+├── scripts/                      # env loader, linters, planner, review helpers (+ unit tests)
+├── examples/run-2026-11-23/      # a real recorded run: results, report, bug report
 ├── docs/                         # architecture, csv format, playbook
 ├── .env.defaults  .env.saucedemo # layered config (tracked, no secrets)
 └── .gitlab-ci.yml
@@ -224,6 +234,39 @@ Each agent prompt is written in **four layers**: business logic, domain knowledg
 design decisions. Rules that every agent shares live once in `.claude/knowledge/shared-instructions.md`
 and are cited, never copied. See [docs/architecture.md](docs/architecture.md#agent-prompts-four-layers).
 
+## Skills: methods and quality
+
+Agents know **who** does the work. Skills teach **how** to do it well. Commands orchestrate, agents act,
+skills teach, knowledge informs (`.claude/knowledge/authoring-standard.md`).
+
+| Skill | What it teaches | Deterministic helper |
+|---|---|---|
+| `qa-test-design` | Equivalence partitioning, boundary values, decision tables and state transitions, turned into ready-to-lint CSV rows. Includes a worked example on the checkout form that finds a case the suite was missing | `npm run suites:lint` |
+| `qa-review-tests` | Can this case catch a bug? Five dimensions: determinism, testability, bug-catching intent, grounding, duplication | `npm run review:tests` |
+| `prompt-review` | Reviews the system's own prompts (agents, commands, skills) for interface, executability, single source of truth, context economy and instruction craft | `npm run prompt:facts` |
+
+Each skill collects **facts with a script first**, then applies judgement, and every finding needs
+evidence. The principles behind them: [cases-that-catch-bugs.md](.claude/knowledge/cases-that-catch-bugs.md).
+
+**Prompts are code an LLM executes, and they rot like code.** A cited path moves, a script gets
+renamed, a copied rule drifts. `prompt-review` is how this system keeps its own instructions healthy.
+Run it before committing any change under `.claude/`.
+
+Both review skills were run on this repository while it was built. `review:tests` found a real
+determinism problem in case CART-006 ("Add **any** two products": two agents would pick different
+products), which is now fixed.
+
+## A real run, recorded
+
+[`examples/run-2026-11-23/`](examples/run-2026-11-23/) is a live run of this repository against
+SauceDemo in a real browser:
+
+- **Smoke 5/5 PASS**, with exact evidence (checkout totals $29.99 + $2.40 = $32.39).
+- **Bug found:** QRK-001, every product showing the same placeholder image for `problem_user`, caught by a business rule, not a pixel diff. See the bug report.
+- **Two findings no step asked for:** deep links served with HTTP 404, and a new "Generate PDF order" button missing from the domain knowledge. Both are graded AMBIGUOUS for a human.
+
+Read it before your first run, so you know what good output looks like.
+
 ## Guardrails
 
 - **Real-user hook.** `.claude/hooks/enforce-real-user.mjs` blocks JavaScript evaluation through any browser MCP tool, except read-only measurement. An agent cannot "pass" a case by clicking a disabled button through JS.
@@ -271,6 +314,9 @@ The short version, with the long version in [docs/playbook.md](docs/playbook.md)
 - [docs/architecture.md](docs/architecture.md): components, data flow and design decisions
 - [docs/csv-format.md](docs/csv-format.md): the case format, in full
 - [docs/playbook.md](docs/playbook.md): step-by-step adoption on a new project
+- [.claude/knowledge/cases-that-catch-bugs.md](.claude/knowledge/cases-that-catch-bugs.md): principles for test cases worth keeping
+- [.claude/knowledge/authoring-standard.md](.claude/knowledge/authoring-standard.md): how to write agents, commands and skills
+- [examples/run-2026-11-23/](examples/run-2026-11-23/): a recorded live run
 
 ## Author
 

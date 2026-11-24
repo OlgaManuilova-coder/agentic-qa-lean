@@ -31,6 +31,8 @@ env-and-suites:
     - npm run env:check
     - npm run suites:lint
     - npm run suites:list
+    - npm run review:tests        # advisory: candidates for /qa-review-tests
+    - npm run prompt:facts -- all # advisory: candidates for /prompt-review
 
 unit:
   stage: validate

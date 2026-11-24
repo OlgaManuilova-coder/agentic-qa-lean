@@ -15,11 +15,13 @@
     "specs:run": "playwright test",
     "specs:list": "playwright test --list",
     "test": "node --test \"scripts/unit/*.test.mjs\"",
-    "check": "npm run env:check && npm run suites:lint && npm test"
+    "check": "npm run env:check && npm run suites:lint && npm test",
+    "review:tests": "node scripts/review-tests.mjs",
+    "prompt:facts": "node scripts/prompt-facts.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1"
   },
   "license": "MIT",
-  "author": "Olga Manuilova — Head of Agentic Quality Engineering & AI-Native SDLC"
+  "author": "Olga Manuilova \u2014 Head of Agentic Quality Engineering & AI-Native SDLC"
 }

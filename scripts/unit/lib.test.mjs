@@ -70,3 +70,51 @@ test('validateSuiteCsv reports bad tags and unknown placeholders', () => {
   assert.match(errors[0], /Steps line 2/);
   assert.match(errors[1], /\{\{NOPE\}\}/);
 });
+
+import { reviewRecords } from '../review-tests.mjs';
+
+test('review-tests flags vague actions, vague oracles, missing intent and duplicates', () => {
+  const base = { Title: 'A', Business_Rule: 'BL-X-001', Failure_Signals: 'x', Steps: "[ACT] Click 'Login'", Assertions: '[TEXT] Total $1.00' };
+  const f = reviewRecords([
+    { ...base, ID: 'T-001' },
+    { ...base, ID: 'T-002', Title: 'B' },
+    { ...base, ID: 'T-003', Title: 'C', Steps: '[ACT] Add any product', Assertions: '[STATE] totals are correct', Failure_Signals: '', Business_Rule: '' },
+  ]);
+  const codes = f.map((x) => `${x.id}:${x.code}`);
+  assert.ok(codes.includes('T-002:DUP-1'));
+  assert.ok(codes.includes('T-003:DET-1'));
+  assert.ok(codes.includes('T-003:TST-1'));
+  assert.ok(codes.includes('T-003:BUG-1'));
+  assert.ok(codes.includes('T-003:GRD-1'));
+  assert.ok(!codes.includes('T-001:DUP-1'));
+});
+
+test('review-tests accepts vague words when the oracle is exact', () => {
+  const f = reviewRecords([{ ID: 'T-001', Title: 'A', Business_Rule: 'BL-X-001', Failure_Signals: 'x', Steps: "[ACT] Click 'Pay'", Assertions: "[TEXT] 'Payment successful' shown" }]);
+  assert.equal(f.length, 0);
+});
+
+import { collectFacts, frontmatter } from '../prompt-facts.mjs';
+
+test('prompt-facts finds dangling paths, unknown scripts, counts and vague phrases', () => {
+  const text = '---\nname: x\ndescription: does y\n---\n1. Run `npm run nope` then read `docs/missing.md` and `docs/here.md`.\n2. Consider checking the 6 suites, etc.\n## Output\nok';
+  const f = collectFacts(text, { exists: (p) => p === 'docs/here.md', scripts: { test: '' } });
+  assert.deepEqual(f.danglingPaths, ['docs/missing.md']);
+  assert.deepEqual(f.unknownNpmScripts, ['nope']);
+  assert.deepEqual(f.hardCodedCounts, ['6 suites']);
+  assert.ok(f.vaguePhrases.map((v) => v.toLowerCase()).includes('consider'));
+  assert.equal(f.numberedSteps, 2);
+  assert.equal(f.hasOutputSection, true);
+  assert.deepEqual(frontmatter('no frontmatter'), null);
+});
+
+import { changedSuiteIds } from '../review-tests.mjs';
+
+test('review-tests maps changed CSV files to suite ids', () => {
+  const m = { suites: [{ id: '003', file: 'regression/suites/cart/003-cart.csv' }, { id: '004', file: 'regression/suites/checkout/004-checkout.csv' }] };
+  assert.deepEqual(changedSuiteIds(m, ['README.md', 'regression/suites/cart/003-cart.csv']), ['003']);
+});
+
+test('prompt-facts counts hyphenated numbers too', () => {
+  assert.deepEqual(collectFacts('Use the 15-column format and 3 dimensions.\n## Output').hardCodedCounts, ['15-column', '3 dimensions']);
+});

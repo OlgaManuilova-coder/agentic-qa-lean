@@ -13,6 +13,7 @@ New here? Read `README.md`, then `docs/architecture.md`.
 
 Slash commands (in Claude Code): `/qa-smoke`, `/qa-run <ids>`, `/qa-regression <selection>`,
 `/qa-exploratory <charter>`, `/qa-bug <description>`.
+Skills: `/qa-test-design`, `/qa-review-tests`, `/prompt-review`.
 
 npm scripts — read `package.json`; the important ones: `npm run env:check`, `npm run suites:lint`,
 `npm run suites:list [-- <selection>]`, `npm run regression:plan -- <selection>`, `npm test`, `npm run specs:run`.
@@ -29,6 +30,7 @@ Layered loader `scripts/lib/load-env.mjs`: `.env.defaults` → `.env.${TEST_ENV}
 |---|---|
 | Agents (4) | `.claude/agents/` |
 | Slash commands | `.claude/commands/` |
+| Skills (methods; each with a deterministic helper script) | `.claude/skills/` |
 | Always-loaded rules (keep short) | `.claude/rules/` |
 | On-demand knowledge: shared instructions, oracle, domain | `.claude/knowledge/` |
 | Hooks (real-user enforcement) | `.claude/hooks/` + `.claude/settings.json` |
@@ -45,3 +47,4 @@ Layered loader `scripts/lib/load-env.mjs`: `.env.defaults` → `.env.${TEST_ENV}
 - Changing a CSV, the manifest or the oracle ⇒ run `npm run suites:lint` before committing.
 - No code ⇒ no unit test: data and prompts are gated by `suites:lint`; `scripts/unit/` tests code only.
 - Counts (suites, cases) are never written into docs — run `npm run suites:list`.
+- New or changed case ⇒ `npm run review:tests`. New or changed prompt under `.claude/` ⇒ `npm run prompt:facts -- <name>` and `/prompt-review <name>`; follow `.claude/knowledge/authoring-standard.md`.
