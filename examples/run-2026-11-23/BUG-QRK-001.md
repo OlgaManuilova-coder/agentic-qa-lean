@@ -36,4 +36,4 @@ The image loads (naturalWidth 600), so this is not a broken-image error. It is t
 - In a real product this is a Medium: customers see wrong merchandise, but they can still buy.
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

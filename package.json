@@ -1,6 +1,6 @@
 {
   "name": "agentic-qa-lean",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "description": "Lean template of an agentic QA system: natural-language CSV test suites executed by Claude Code agents through Playwright MCP. Demo target: SauceDemo.",
   "type": "module",
@@ -23,6 +23,6 @@
   "devDependencies": {
     "@playwright/test": "^1.65.1"
   },
-  "license": "MIT",
-  "author": "Olga Manuilova \u2014 Head of Agentic Quality Engineering & AI-Native SDLC"
+  "license": "Apache-2.0",
+  "author": "Olga Manuilova — Head of Agentic Quality Engineering & AI-Native SDLC"
 }

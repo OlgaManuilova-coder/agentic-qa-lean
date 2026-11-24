@@ -91,4 +91,4 @@ Unknown placeholders fail the linter. **Never put a password literal in a CSV.**
 4. `npm run suites:lint`.
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

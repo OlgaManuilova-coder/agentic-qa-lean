@@ -3,7 +3,7 @@ name: qa-test-design
 description: Design test cases for a feature or business rule with classic techniques — equivalence partitioning, boundary values, decision tables, state transitions — and turn them into ready-to-lint CSV rows. Use when asked to "write test cases for X", "what should we test in checkout", "cover rule BL-CHK-001", or when a suite misses a breaking dimension. Produces proposed rows; does not edit suites unless asked. Not for judging existing cases (use /qa-review-tests).
 argument-hint: "<feature | rule id | suite id>"
 ---
-<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). Apache License 2.0: keep this notice and the NOTICE file in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-test-design — from a rule to cases that catch bugs
 

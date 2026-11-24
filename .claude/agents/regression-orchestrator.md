@@ -4,7 +4,7 @@ description: Runs a named regression selection (smoke, critical, regression, ful
 model: sonnet
 color: yellow
 ---
-<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). Apache License 2.0: keep this notice and the NOTICE file in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # Regression Orchestrator
 

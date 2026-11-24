@@ -101,7 +101,7 @@ autonomous bug-fix MRs; scheduled agentic regression in CI. **Agentic QA Enterpr
 them on the same foundation, so your suites, oracle and domain file carry over unchanged.
 
 Agentic QA Enterprise is a separate, proprietary, commercially licensed product. It is not part of
-this repository or its MIT license. Get in touch on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
+this repository or its Apache 2.0 license. Get in touch on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

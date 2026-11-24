@@ -143,4 +143,4 @@ deterministic regression. Promotion moves each case to where it is cheapest to k
 | Tracker integration, secrets, plugins | Agentic QA Enterprise (proprietary; [contact](https://www.linkedin.com/in/olga-manuylova/)) |
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 — Apache License 2.0 and authorship
+- License changed from MIT to the **Apache License 2.0**. Its section 4(d) requires every redistribution and derivative work to keep the attribution in `NOTICE`. Versions before 0.3.0 remain available under MIT.
+- Copyright notice in every source, prompt and documentation file; `NOTICE`, `CITATION.cff` ("Cite this repository" on GitHub) and an Attribution section in the README.
+
 ## 0.2.1 — independent review of the skills
 - Independent `/prompt-review` of the three skills (fresh agent): 0 blockers, 3 major, 6 minor; all fixed. Expected values come from the oracle or the domain file only, never from the build; the checkout decision table is complete (one more missing case found: Last Name with Postal Code filled).
 - New hard gate `npm run prompts:lint` (in `npm run check` and CI): a prompt whose frontmatter does not parse loads with no description and is never picked.
@@ -17,4 +21,4 @@
 - First version of the template, demo target SauceDemo.
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

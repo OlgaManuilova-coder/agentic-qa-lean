@@ -1,4 +1,4 @@
-// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). Apache License 2.0: keep this notice and the NOTICE file in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Minimal RFC 4180 CSV parser (quoted fields, escaped quotes, newlines inside quotes).
 // Dependency-free on purpose: the suites are data, the linter must run anywhere Node runs.
 

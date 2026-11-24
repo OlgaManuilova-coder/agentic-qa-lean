@@ -1,7 +1,7 @@
 {
   "_meta": {
     "author": "Olga Manuilova",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "source": "https://github.com/OlgaManuilova-coder/agentic-qa-lean",
     "version": "1.0.0",
     "description": "Regression manifest: every CSV suite, its owner agent and the named selections that orchestrators run. Validate with `npm run suites:lint`; print with `npm run suites:list [-- <selection>]`.",

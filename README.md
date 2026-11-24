@@ -16,7 +16,7 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 >
 > **Agentic QA Enterprise**, the full implementation, is a **separate, proprietary offering**. It is
 > **not open source**, **not contained in this repository**, and **not covered by this repository's
-> MIT license**. It is available only through a commercial engagement (licensing, implementation and
+> Apache 2.0 license**. It is available only through a commercial engagement (licensing, implementation and
 > support). [Contact me on LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
 
 ## Editions
@@ -24,7 +24,7 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 | | **agentic-qa-lean** (this repository) | **Agentic QA Enterprise** |
 |---|---|---|
 | Purpose | Reference implementation: learn and evaluate the approach | Production implementation for teams and organisations |
-| Availability | Public, open source (MIT) | Proprietary, commercial licence, private |
+| Availability | Public, open source (Apache 2.0) | Proprietary, commercial licence, private |
 | Agents / commands / skills | 4 / 5 / 3 (light versions) | 10-agent crew + plugin agents / full command set / full methodology library |
 | Prompt quality loop (review, heal, evidence-based improve) | Review only | ✓ |
 | Plugin marketplace (setup, secrets, bug lifecycle, per-ticket testing) | — | ✓ |
@@ -35,7 +35,7 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 | Scheduled and upstream-triggered agentic regression in CI | — | ✓ |
 | Implementation support | None | Included in the engagement |
 
-Everything in this repository is free to use under the MIT license. Nothing in this repository
+Everything in this repository is free to use under the Apache License 2.0, with attribution (see [NOTICE](NOTICE)). Nothing in this repository
 grants any right to the Enterprise edition.
 
 ---
@@ -340,14 +340,14 @@ organisation? Connect on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/)
 
 This framework was designed and written by **Olga Manuilova**. If you use it, adapt it, present it
 or teach it, credit it as **"Agentic QA Framework by Olga Manuilova"** with a link to this
-repository. The MIT License requires the copyright notice to stay in every copy; every source,
+repository. The Apache License 2.0 requires every copy and every derivative work to keep the copyright notices and the [NOTICE](NOTICE) file; every source,
 prompt and document file carries it. See [NOTICE](NOTICE); GitHub's "Cite this repository" uses
 [CITATION.cff](CITATION.cff).
 
 ## License
 
-The contents of **this repository** (the reference implementation) are licensed under MIT, see
-[LICENSE](LICENSE). The MIT license does not extend to Agentic QA Enterprise, which is a separate,
+The contents of **this repository** (the reference implementation) are licensed under the Apache License 2.0, see
+[LICENSE](LICENSE) and [NOTICE](NOTICE). Versions before 0.3.0 were released under MIT. The license does not extend to Agentic QA Enterprise, which is a separate,
 proprietary product under its own commercial terms.
 
 SauceDemo is a public demo application by Sauce Labs. This project is not affiliated with it.

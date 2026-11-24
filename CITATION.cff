@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Manuilova
     given-names: Olga
-license: MIT
+license: Apache-2.0
 repository-code: "https://github.com/OlgaManuilova-coder/agentic-qa-lean"
-version: 0.2.1
+version: 0.3.0
 date-released: 2026-11-24
 keywords: [agentic QA, test automation, Claude Code, Playwright MCP, quality engineering]

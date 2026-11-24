@@ -43,4 +43,4 @@ Rule of thumb: **commands orchestrate, agents act, skills teach, knowledge infor
 3. If the prompt is invoked by another prompt, update that caller in the same change.
 
 ---
-*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · Apache License 2.0 · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

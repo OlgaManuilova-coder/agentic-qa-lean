@@ -3,7 +3,7 @@ name: qa-review-tests
 description: Review CSV test cases for quality before they are trusted — determinism, testability, bug-catching intent, grounding in business rules, and duplication. Use when asked to "review the cases", "check suite 003", "are these test cases any good", after writing or generating new cases, or before promoting a case to a Playwright spec. Read-only unless the user asks to apply the fixes. Not for writing new cases (use /qa-test-design) or for reviewing prompts (use /prompt-review).
 argument-hint: "[suite-id ... | changed] [--fix]"
 ---
-<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). Apache License 2.0: keep this notice and the NOTICE file in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-review-tests — is this case able to catch a bug?
 

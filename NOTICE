@@ -1,17 +1,18 @@
 Agentic QA Framework — lean edition
-Copyright (c) 2026 Olga Manuilova
+Copyright 2026 Olga Manuilova
 Head of Agentic Quality Engineering & AI-Native SDLC
 https://github.com/OlgaManuilova-coder/agentic-qa-lean
 https://www.linkedin.com/in/olga-manuylova/
 
-The architecture, agent and skill design, test-case format, oracle approach and documentation in this
-repository were created by Olga Manuilova. First published on GitHub in November 2026; the git
-history is the record of authorship.
+This product was designed and written by Olga Manuilova: the architecture, the agent and skill
+design, the test-case format, the oracle approach and the documentation. First published on GitHub
+in November 2026; the git history is the record of authorship.
 
-This repository is licensed under the MIT License (see LICENSE). The MIT License requires that the
-copyright notice above be included in all copies or substantial portions of the software. If you use,
-adapt, present or teach this framework, credit it as:
+Licensed under the Apache License, Version 2.0 (see LICENSE). Under section 4(d) of that license, any
+redistribution of this work or of a derivative work must include a readable copy of the attribution
+notices in this NOTICE file. When you use, adapt, present or teach this framework, credit it as:
 
   "Agentic QA Framework by Olga Manuilova" (with a link to the source above).
 
+Versions published before 0.3.0 were released under the MIT License.
 Agentic QA Enterprise is a separate, proprietary product and is not covered by this license.
