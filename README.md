@@ -336,6 +336,14 @@ Designed from hands-on experience building agentic QA for a B2B e-commerce platf
 Interested in **Agentic QA Enterprise**, a walkthrough, or rolling agentic QA out in your
 organisation? Connect on [LinkedIn](https://www.linkedin.com/in/olga-manuylova/).
 
+## Attribution
+
+This framework was designed and written by **Olga Manuilova**. If you use it, adapt it, present it
+or teach it, credit it as **"Agentic QA Framework by Olga Manuilova"** with a link to this
+repository. The MIT License requires the copyright notice to stay in every copy; every source,
+prompt and document file carries it. See [NOTICE](NOTICE); GitHub's "Cite this repository" uses
+[CITATION.cff](CITATION.cff).
+
 ## License
 
 The contents of **this repository** (the reference implementation) are licensed under MIT, see

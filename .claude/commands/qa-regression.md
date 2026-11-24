@@ -2,6 +2,7 @@
 description: Run a named regression selection in parallel lanes and get a GO / NO-GO sign-off.
 argument-hint: "<smoke|critical|regression|bug-hunt|full> [--lanes N] [--env <env>]"
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-regression — parallel regression
 

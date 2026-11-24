@@ -68,3 +68,6 @@ Write `results/<RUN_ID>/<SUITE_ID>.json`:
 
 Stop and report AMBIGUOUS when: the case contradicts the oracle; the UI changed so the steps no longer
 apply; the environment is unreachable twice in a row; a step would require forcing the UI.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

@@ -4,6 +4,7 @@ description: Parameterized executor for CSV suites on ONE assigned browser lane.
 model: sonnet
 color: orange
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # Test Runner — suite execution template
 

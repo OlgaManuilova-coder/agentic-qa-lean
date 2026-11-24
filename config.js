@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Import this file (`import './config.js'`) from any script or spec that needs configuration.
 // It loads the layered env files into process.env and exits if a CORE variable is missing.
 // Read values with process.env.X — there is no other access path.

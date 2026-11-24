@@ -11,3 +11,6 @@ npm run suites:lint            # validate after any edit
 
 `quirks/005-demo-user-quirks.csv` runs as SauceDemo's intentionally broken demo accounts. Its FAILs
 are **expected**: the suite exists to show how agents detect and report real defects.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

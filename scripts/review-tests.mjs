@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Deterministic first pass of /qa-review-tests: flags candidate quality problems in CSV cases.
 // It never edits anything. Every hit is a CANDIDATE: the reviewing agent confirms it before it
 // becomes a finding (some vague words are fine in context).

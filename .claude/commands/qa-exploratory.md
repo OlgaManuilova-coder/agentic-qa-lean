@@ -2,6 +2,7 @@
 description: Time-boxed exploratory session with a charter; returns findings and proposed new CSV cases.
 argument-hint: "<area or charter> [--minutes 20] [--user PROBLEM_USER]"
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-exploratory — charter-based exploration
 

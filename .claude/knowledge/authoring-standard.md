@@ -41,3 +41,6 @@ Rule of thumb: **commands orchestrate, agents act, skills teach, knowledge infor
 1. `npm run prompt:facts -- <name>`: no dangling paths, no unknown scripts. Then read for what it cannot see: bare file names, relative links, numbers in prose.
 2. `/prompt-review <name>`: verdict SHIP, or SHIP WITH FIXES with the fixes applied.
 3. If the prompt is invoked by another prompt, update that caller in the same change.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

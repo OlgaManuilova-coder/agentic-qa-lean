@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // PreToolUse hook — agents must drive the browser like a real user.
 //
 // Blocks JavaScript evaluation through any browser MCP server (browser_evaluate,

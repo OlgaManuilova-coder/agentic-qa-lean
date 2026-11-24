@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Hard gate for prompt files (.claude/agents, .claude/commands, .claude/skills/*/SKILL.md):
 // the frontmatter must parse. A broken frontmatter is silent at runtime — the file loads with no name
 // and no description, so the agent or skill is never picked. Judgement on prompts is /prompt-review.

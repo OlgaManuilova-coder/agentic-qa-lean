@@ -141,3 +141,6 @@ deterministic regression. Promotion moves each case to where it is cheapest to k
 | An API specialist | an agent file with the four layers, and an API MCP server (for example Postman) or `[API]` checks via `curl` |
 | A new guardrail | a hook script + a matcher in `.claude/settings.json` + a unit test in `scripts/unit/` |
 | Tracker integration, secrets, plugins | Agentic QA Enterprise (proprietary; [contact](https://www.linkedin.com/in/olga-manuylova/)) |
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

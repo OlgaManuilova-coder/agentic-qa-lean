@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Unit tests for the review helpers: accepted review candidates and the prompt frontmatter gate.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

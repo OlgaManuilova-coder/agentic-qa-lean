@@ -48,3 +48,6 @@ new case or a written reason why it should not. The oracle gets a rule if one wa
 ## 8. One behaviour per case, independent of order
 A case that needs another case to have run first fails for the wrong reason. State what it needs in
 `Preconditions`, and clean up in `Cleanup`.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

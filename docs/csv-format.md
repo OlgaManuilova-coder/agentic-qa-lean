@@ -89,3 +89,6 @@ Unknown placeholders fail the linter. **Never put a password literal in a CSV.**
 2. Entry in `config/test-suites.json` → `suites`: `id`, `name`, `file`, `domain`, `layer`, `priority` (`P0`–`P3`), `testCount`, `estimatedMinutes` (about 1 min per case to start, then tune from real runs), `agent`, `tags`.
 3. Add the suite to selections if needed (`include`, `where`, `exclude`).
 4. `npm run suites:lint`.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

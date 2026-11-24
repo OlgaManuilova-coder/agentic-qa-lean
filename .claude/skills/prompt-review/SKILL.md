@@ -3,6 +3,7 @@ name: prompt-review
 description: Review a prompt file of this agentic QA system — an agent (.claude/agents), a command (.claude/commands) or a skill (.claude/skills) — for interface, executability, single source of truth, context economy and instruction craft, and return evidence-backed findings with concrete rewrites. Use when asked to "review this agent", "is this skill any good", "check the prompts I changed", or before committing a new or edited prompt. Read-only. Not for CSV test cases (use /qa-review-tests).
 argument-hint: "<name | path | changed | all>"
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /prompt-review — review the prompts that run the system
 

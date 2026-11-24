@@ -1,19 +1,44 @@
 {
   "_meta": {
+    "author": "Olga Manuilova",
+    "license": "MIT",
+    "source": "https://github.com/OlgaManuilova-coder/agentic-qa-lean",
     "version": "1.0.0",
     "description": "Regression manifest: every CSV suite, its owner agent and the named selections that orchestrators run. Validate with `npm run suites:lint`; print with `npm run suites:list [-- <selection>]`.",
     "csvFormat": "docs/csv-format.md",
-    "domains": ["smoke", "auth", "inventory", "cart", "checkout", "quirks"],
-    "layers": ["frontend"]
+    "domains": [
+      "smoke",
+      "auth",
+      "inventory",
+      "cart",
+      "checkout",
+      "quirks"
+    ],
+    "layers": [
+      "frontend"
+    ]
   },
   "defaults": {
     "preferredBrowser": "playwright-chrome",
-    "fallbackChain": ["playwright-chrome", "playwright-firefox"],
+    "fallbackChain": [
+      "playwright-chrome",
+      "playwright-firefox"
+    ],
     "mobileServer": "playwright-mobile"
   },
   "browserPool": [
-    { "slot": 1, "serverName": "playwright-chrome", "browserName": "chromium", "status": "available" },
-    { "slot": 2, "serverName": "playwright-firefox", "browserName": "firefox", "status": "available" }
+    {
+      "slot": 1,
+      "serverName": "playwright-chrome",
+      "browserName": "chromium",
+      "status": "available"
+    },
+    {
+      "slot": 2,
+      "serverName": "playwright-firefox",
+      "browserName": "firefox",
+      "status": "available"
+    }
   ],
   "suites": [
     {
@@ -26,7 +51,10 @@
       "testCount": 5,
       "estimatedMinutes": 4,
       "agent": "qa-frontend-expert",
-      "tags": ["smoke", "critical-path"]
+      "tags": [
+        "smoke",
+        "critical-path"
+      ]
     },
     {
       "id": "001",
@@ -38,7 +66,10 @@
       "testCount": 8,
       "estimatedMinutes": 6,
       "agent": "qa-frontend-expert",
-      "tags": ["auth", "security"]
+      "tags": [
+        "auth",
+        "security"
+      ]
     },
     {
       "id": "002",
@@ -50,7 +81,11 @@
       "testCount": 8,
       "estimatedMinutes": 7,
       "agent": "qa-frontend-expert",
-      "tags": ["catalog", "sort", "responsive"]
+      "tags": [
+        "catalog",
+        "sort",
+        "responsive"
+      ]
     },
     {
       "id": "003",
@@ -62,7 +97,10 @@
       "testCount": 6,
       "estimatedMinutes": 6,
       "agent": "qa-frontend-expert",
-      "tags": ["cart", "state"]
+      "tags": [
+        "cart",
+        "state"
+      ]
     },
     {
       "id": "004",
@@ -74,7 +112,11 @@
       "testCount": 8,
       "estimatedMinutes": 9,
       "agent": "qa-frontend-expert",
-      "tags": ["checkout", "money", "critical-path"]
+      "tags": [
+        "checkout",
+        "money",
+        "critical-path"
+      ]
     },
     {
       "id": "005",
@@ -86,15 +128,37 @@
       "testCount": 5,
       "estimatedMinutes": 6,
       "agent": "qa-frontend-expert",
-      "tags": ["bug-hunting", "demo"]
+      "tags": [
+        "bug-hunting",
+        "demo"
+      ]
     }
   ],
   "selections": {
     "_doc": "Rule shapes: { include: [ids] } | { all: true, exclude?: [ids] } | { where: { field: value | [values], tag?, tagAny? }, include?, exclude? }.",
-    "smoke": { "include": ["000"] },
-    "critical": { "where": { "priority": "P0" } },
-    "regression": { "all": true, "exclude": ["005"] },
-    "bug-hunt": { "where": { "tag": "bug-hunting" } },
-    "full": { "all": true }
+    "smoke": {
+      "include": [
+        "000"
+      ]
+    },
+    "critical": {
+      "where": {
+        "priority": "P0"
+      }
+    },
+    "regression": {
+      "all": true,
+      "exclude": [
+        "005"
+      ]
+    },
+    "bug-hunt": {
+      "where": {
+        "tag": "bug-hunting"
+      }
+    },
+    "full": {
+      "all": true
+    }
   }
 }

@@ -59,3 +59,6 @@ the id scheme `BL-<DOMAIN>-<NNN>` and never reuse a retired id.
 | ID | Rule | Severity if broken |
 |---|---|---|
 | BL-PERF-001 | Sign-in of a standard user reaches the inventory in under 3 seconds. A slower sign-in is a FAIL with the measured time as evidence. | Medium |
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

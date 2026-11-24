@@ -1,3 +1,4 @@
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 # CLAUDE.md
 
 ## What this repo is

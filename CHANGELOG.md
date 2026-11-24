@@ -15,3 +15,6 @@
 
 ## 0.1.0 — initial template
 - First version of the template, demo target SauceDemo.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

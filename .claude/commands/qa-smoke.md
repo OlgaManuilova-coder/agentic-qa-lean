@@ -2,6 +2,7 @@
 description: Run the P0 smoke suite and give a GO / NO-GO verdict in a few minutes.
 argument-hint: "[env]"
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-smoke — quick smoke run
 

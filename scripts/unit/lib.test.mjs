@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Unit tests for the executable code only (loader, CSV parser, scheduler, validator).
 // Rule: no code => no unit test. Suites, prompts and docs are gated by suites:lint, not here.
 

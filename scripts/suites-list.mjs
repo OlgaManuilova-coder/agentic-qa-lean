@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Prints the suites (optionally of one selection) as a table. Counts are computed, never hand-written.
 // Usage: npm run suites:list [-- <selection>]
 

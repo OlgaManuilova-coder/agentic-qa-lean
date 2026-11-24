@@ -24,3 +24,6 @@ This folder is a **recorded run** of this reference implementation against the p
 
 Screenshots are not committed (they live in the gitignored `results/` folder of a run). The evidence
 here is the textual evidence the agent recorded.
+
+---
+*Agentic QA Framework (lean edition) · © 2026 Olga Manuilova · MIT License · [source](https://github.com/OlgaManuilova-coder/agentic-qa-lean)*

@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Deterministic Playwright specs live in tests/. A CSV case is "promoted" to a spec once it is
 // stable and cheap to script (Automation_Status = Automated, References = the spec file).
 // Agents keep exploring; specs keep guarding. See docs/architecture.md §Promotion.

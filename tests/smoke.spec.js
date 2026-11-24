@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Promoted cases: each test names the CSV case it automates. Keep the IDs in the title so a failing
 // spec maps straight back to its case and Business_Rule.
 

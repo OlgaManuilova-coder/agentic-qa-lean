@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Gate for the regression suites: manifest <-> CSV consistency and the case format.
 // Runs in CI on every merge request. A failure means "fix the data", never "skip the gate".
 

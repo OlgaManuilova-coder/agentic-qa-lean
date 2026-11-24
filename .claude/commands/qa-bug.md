@@ -2,6 +2,7 @@
 description: Reproduce a bug from a description, collect evidence and write a structured bug report (local markdown; the Enterprise edition files it into a tracker).
 argument-hint: "<bug description> | <case id from a run, e.g. CHK-004 REG-2026-01-01-1200>"
 ---
+<!-- © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean -->
 
 # /qa-bug — reproduce and document a bug
 

@@ -1,3 +1,4 @@
+// © 2026 Olga Manuilova — Agentic QA Framework (lean edition). MIT License: keep this notice in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
 // Lane scheduler: Longest-Processing-Time-first with continuous refill.
 //
 // Why not "chunk the suites into batches of N and await each batch"? A batch barrier costs the
