@@ -15,7 +15,7 @@ Slash commands (in Claude Code): `/qa-smoke`, `/qa-run <ids>`, `/qa-regression <
 `/qa-exploratory <charter>`, `/qa-bug <description>`.
 Skills: `/qa-test-design`, `/qa-review-tests`, `/prompt-review`.
 
-npm scripts — read `package.json`; the important ones: `npm run env:check`, `npm run suites:lint`,
+npm scripts — read `package.json`; the important ones: `npm run env:check`, `npm run suites:lint`, `npm run prompts:lint`,
 `npm run suites:list [-- <selection>]`, `npm run regression:plan -- <selection>`, `npm test`, `npm run specs:run`.
 
 ## Environment

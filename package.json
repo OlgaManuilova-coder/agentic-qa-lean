@@ -1,6 +1,6 @@
 {
   "name": "agentic-qa-lean",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Lean template of an agentic QA system: natural-language CSV test suites executed by Claude Code agents through Playwright MCP. Demo target: SauceDemo.",
   "type": "module",
@@ -15,9 +15,10 @@
     "specs:run": "playwright test",
     "specs:list": "playwright test --list",
     "test": "node --test \"scripts/unit/*.test.mjs\"",
-    "check": "npm run env:check && npm run suites:lint && npm test",
+    "check": "npm run env:check && npm run suites:lint && npm run prompts:lint && npm test",
     "review:tests": "node scripts/review-tests.mjs",
-    "prompt:facts": "node scripts/prompt-facts.mjs"
+    "prompt:facts": "node scripts/prompt-facts.mjs",
+    "prompts:lint": "node scripts/prompts-lint.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1"

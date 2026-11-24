@@ -28,12 +28,12 @@ this skill reviews against).
 
 ## Steps
 
-1. **Scope.** The 3-digit suite ids from `config/test-suites.json` (`npm run suites:list`), or `changed`. `changed` covers suite CSVs changed against `HEAD` plus untracked ones; the script maps them to ids. Empty means all suites.
+1. **Scope.** The 3-digit suite ids from `config/test-suites.json` (`npm run suites:list`), or `changed`. `changed` covers suite CSVs changed against `HEAD` plus untracked ones; the script maps them to ids. No argument means all suites; `changed` with no changed suite CSV reviews nothing and says so.
 2. **Collect facts first (deterministic).**
    - `npm run suites:lint`. If it fails, report the lint errors and **stop**: structure is fixed before quality is reviewed.
    - `npm run review:tests -- <ids | changed>`: the candidate list for dimensions 1–5. An unknown id exits with an error. Report it and stop; never treat it as "no candidates".
    - Proposed rows not yet in a suite: save them to a scratch CSV under `results/`, then `npm run suites:lint -- --file <csv>` and `npm run review:tests -- --file <csv>`.
-3. **Confirm each candidate.** Read the case row. A candidate becomes a finding only with evidence: quote the line, and say how two agents could diverge, or which broken build would still pass. Some candidates are fine in context (DUP-3 "info": cases that share steps but each has its own failure signal). Say so and drop them.
+3. **Confirm each candidate.** Read the case row. A candidate becomes a finding only with evidence: quote the line, and say how two agents could diverge, or which broken build would still pass. Some candidates are fine in context (DUP-3 "info": cases that share steps but each has its own failure signal). Say so and drop them. A candidate dropped for good is recorded with its reason in `config/review-accepted.json` (a human decides); the script then hides it, and `npm run review:tests -- --all` shows hidden ones.
 4. **Read beyond the script.** For each case, ask the questions the script cannot:
    - Is the oracle exact enough to catch the bug named in `Failure_Signals`?
    - Does the expected text exist in `.claude/knowledge/oracles/business-logic.md` or `.claude/knowledge/domain/saucedemo.md`? Expected messages that exist nowhere are **invented**, and that is a grounding finding.
@@ -41,12 +41,12 @@ this skill reviews against).
 5. **Report** in chat:
 
 ```
-| Case | Dim | Severity | Evidence (quote) | Fix (the rewritten line) |
+| Case | Dim | Severity | Evidence (quote) | Fix (the rewritten line; for a Grounding finding: a proposed BL rule or a question for a human, never the observed value) |
 Verdict: READY | READY WITH FIXES | NOT READY
 Missing breaking dimensions (cases-that-catch-bugs.md §6): …
 ```
 
-Verdict rule: any **High** finding ⇒ NOT READY; any **Medium** ⇒ READY WITH FIXES; only **Low**, or none ⇒ READY.
+Finding severity (not the case's CSV `Priority`). Verdict rule: any **High** finding ⇒ NOT READY; any **Medium** ⇒ READY WITH FIXES; only **Low**, or none ⇒ READY.
 
 6. **`--fix` only:** apply the rewritten lines to the CSV, then run `npm run suites:lint` (must be OK) and `npm run review:tests -- <ids>`. No candidate may remain except the ones you dropped in step 3, each with its stated reason. Never change an expected value to match the current build (`cases-that-catch-bugs.md` §4). A changed expectation needs a rule or a human.
 

@@ -1,0 +1,5 @@
+{
+  "_doc": "Candidates of `npm run review:tests` that a reviewer confirmed are NOT findings. Key: <CASE-ID>|<CODE>. Value: the reason and who decided, so the decision is reviewable. review:tests hides these and prints how many it hid.",
+  "INV-002|DUP-3": "Kept: same sign-in steps as INV-001, but it proves default sort (BL-INV-002) and fails on 'Unsorted list'. Reviewed 2026-11-24.",
+  "INV-007|DUP-3": "Kept: same sign-in steps as INV-001, but it proves image uniqueness (BL-INV-004) and fails on 'Same image on several products'. Reviewed 2026-11-24."
+}

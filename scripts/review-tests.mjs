@@ -2,13 +2,14 @@
 // Deterministic first pass of /qa-review-tests: flags candidate quality problems in CSV cases.
 // It never edits anything. Every hit is a CANDIDATE: the reviewing agent confirms it before it
 // becomes a finding (some vague words are fine in context).
-//   npm run review:tests [-- <suite-id> ... | changed] [--file <csv>] [--json]
+//   npm run review:tests [-- <suite-id> ... | changed] [--file <csv>] [--json] [--all]
+// Candidates a reviewer accepted (with a reason) live in config/review-accepted.json and are hidden.
 // Unknown suite ids are an error (exit 2), never a silent "no candidates".
 // Structure (columns, tags, placeholders, rule ids) is already gated by `npm run suites:lint`.
 
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { ROOT } from './lib/load-env.mjs';
 import { parseCsvRecords } from './lib/csv.mjs';
 import { loadManifest } from './lib/suites.mjs';
@@ -54,6 +55,22 @@ export function reviewRecords(records, file = '') {
   return findings;
 }
 
+/** Split findings into still-open and accepted (config/review-accepted.json: "<ID>|<CODE>" -> reason). */
+export function applyAccepted(findings, accepted = {}) {
+  const open = [];
+  const hidden = [];
+  for (const f of findings) (accepted[`${f.id}|${f.code}`] ? hidden : open).push(f);
+  return { open, hidden };
+}
+
+function loadAccepted() {
+  try {
+    return JSON.parse(readFileSync(join(ROOT, 'config', 'review-accepted.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
 /** Suites whose CSV changed (tracked diff vs HEAD + untracked files), mapped through the manifest. */
 export function changedSuiteIds(manifest, files) {
   return manifest.suites.filter((s) => files.includes(s.file)).map((s) => s.id);
@@ -75,7 +92,7 @@ function main(args) {
   let label;
   if (fileIdx >= 0) {
     const f = args[fileIdx + 1];
-    all.push(...reviewRecords(parseCsvRecords(readFileSync(join(ROOT, f), 'utf8')).records, f));
+    all.push(...reviewRecords(parseCsvRecords(readFileSync(resolve(ROOT, f), 'utf8')).records, f));
     label = `file ${f}`;
   } else {
     let ids = args.filter((a) => !a.startsWith('--'));
@@ -92,11 +109,13 @@ function main(args) {
     for (const s of suites) all.push(...reviewRecords(parseCsvRecords(readFileSync(join(ROOT, s.file), 'utf8')).records, s.file));
     label = `${suites.length} suite(s)`;
   }
-  if (args.includes('--json')) return console.log(JSON.stringify(all, null, 2));
-  if (!all.length) return console.log(`review:tests — no candidates in ${label}`);
+  const { open, hidden } = args.includes('--all') ? { open: all, hidden: [] } : applyAccepted(all, loadAccepted());
+  const note = hidden.length ? ` (${hidden.length} accepted in config/review-accepted.json; --all shows them)` : '';
+  if (args.includes('--json')) return console.log(JSON.stringify(open, null, 2));
+  if (!open.length) return console.log(`review:tests — no candidates in ${label}${note}`);
   console.log('ID        CODE   DIMENSION             DETAIL');
-  for (const f of all) console.log(`${f.id.padEnd(9)} ${f.code.padEnd(6)} ${f.dimension.padEnd(21)} ${f.detail}`);
-  console.log(`\n${all.length} candidate(s) in ${label}. Confirm each before treating it as a finding.`);
+  for (const f of open) console.log(`${f.id.padEnd(9)} ${f.code.padEnd(6)} ${f.dimension.padEnd(21)} ${f.detail}`);
+  console.log(`\n${open.length} candidate(s) in ${label}${note}. Confirm each before treating it as a finding.`);
 }
 
 if (process.argv[1]?.endsWith('review-tests.mjs')) main(process.argv.slice(2));

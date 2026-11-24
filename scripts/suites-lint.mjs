@@ -3,7 +3,7 @@
 // Runs in CI on every merge request. A failure means "fix the data", never "skip the gate".
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { ROOT, buildEnv } from './lib/load-env.mjs';
 import { expandSelection, loadKnownRules, loadManifest, validateSuiteCsv } from './lib/suites.mjs';
 
@@ -15,7 +15,7 @@ const fileArg = process.argv.indexOf('--file');
 if (fileArg > 0) {
   const f = process.argv[fileArg + 1];
   const { values: v } = buildEnv();
-  const { errors: e, records } = validateSuiteCsv(readFileSync(join(ROOT, f), 'utf8'), { file: f, knownVars: Object.keys(v), knownRules: loadKnownRules() });
+  const { errors: e, records } = validateSuiteCsv(readFileSync(resolve(ROOT, f), 'utf8'), { file: f, knownVars: Object.keys(v), knownRules: loadKnownRules() });
   if (e.length) {
     console.error(e.map((x) => `✗ ${x}`).join('\n'));
     process.exit(1);

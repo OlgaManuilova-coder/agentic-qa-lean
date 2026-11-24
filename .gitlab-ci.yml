@@ -30,6 +30,7 @@ env-and-suites:
   script:
     - npm run env:check
     - npm run suites:lint
+    - npm run prompts:lint        # hard gate: prompt frontmatter parses
     - npm run suites:list
     - npm run review:tests        # advisory: candidates for /qa-review-tests
     - npm run prompt:facts -- all # advisory: candidates for /prompt-review

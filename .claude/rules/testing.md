@@ -10,5 +10,5 @@ Loaded into every session and every sub-agent — keep this file SHORT. Task-spe
 - Drive the UI like a real user; JS evaluation is hook-blocked except read-only measurement.
 - Verdicts: PASS / FAIL / AMBIGUOUS / BLOCKED. A BL-* violation is a FAIL even if no step asked.
 - No evidence (screenshot + expected vs actual) ⇒ no FAIL.
-- Everything a run writes goes under `results/<RUN_ID>/` (gitignored).
+- Everything a run writes goes under `results/<RUN_ID>/` (gitignored); design scratch files (proposed rows) go directly under `results/`.
 - Never write passwords or tokens into reports, CSVs or commits.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — independent review of the skills
+- Independent `/prompt-review` of the three skills (fresh agent): 0 blockers, 3 major, 6 minor; all fixed. Expected values come from the oracle or the domain file only, never from the build; the checkout decision table is complete (one more missing case found: Last Name with Postal Code filled).
+- New hard gate `npm run prompts:lint` (in `npm run check` and CI): a prompt whose frontmatter does not parse loads with no description and is never picked.
+- `config/review-accepted.json`: review candidates a reviewer kept, with the reason; `review:tests --all` shows them.
+- `--file` accepts absolute paths in `review:tests` and `suites:lint`.
+
 ## 0.2.0 — skills and a recorded run
 - Skills: `qa-test-design`, `qa-review-tests`, `prompt-review` (light versions), each with a deterministic helper (`review:tests`, `prompt:facts`, `suites:lint --file`).
 - Knowledge: `cases-that-catch-bugs.md`, `authoring-standard.md`.

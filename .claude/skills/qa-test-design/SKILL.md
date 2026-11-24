@@ -16,7 +16,7 @@ worth keeping. Read before you design: `.claude/knowledge/shared-instructions.md
 2. **Pick techniques** with the table below. Most features need two or three of them.
 3. **Derive conditions** for each technique: write down the partitions, the boundaries, the table or the transitions *before* writing any case.
 4. **Walk the breaking dimensions** (`cases-that-catch-bugs.md` §6) and add what the techniques missed. Write down what you deliberately skip.
-5. **Write rows** in the format of `docs/csv-format.md` (header and column order are enforced by `npm run suites:lint`). Each row has exact oracles, a `Business_Rule`, and a `Failure_Signals` line that says what bug it catches.
+5. **Write rows** in the format of `docs/csv-format.md` (header and column order are enforced by `npm run suites:lint`). Each row has exact oracles, a `Business_Rule`, and a `Failure_Signals` line that says what bug it catches. **Take every expected value from the oracle or the domain file.** If neither defines it, do not observe the build: propose a rule and mark the row as needing a human (`.claude/knowledge/cases-that-catch-bugs.md` §4).
 6. **Self-check (required):** save the rows with the CSV header to `results/proposed-<feature>.csv`, then run `npm run suites:lint -- --file results/proposed-<feature>.csv` and `npm run review:tests -- --file results/proposed-<feature>.csv`. Fix every error and every confirmed candidate.
 7. **Return** a coverage table (condition → case id), the breaking dimensions you skipped with a reason for each, and the proposed rows in a fenced `csv` block. Add them to a suite only if the user asks: append the rows, raise that suite's `testCount` (and `estimatedMinutes`) in `config/test-suites.json`, then run `npm run suites:lint` and `npm run review:tests -- <id>`.
 
@@ -40,6 +40,8 @@ worth keeping. Read before you design: `.claude/knowledge/shared-instructions.md
 | – | – | – | `Error: First Name is required` | CHK-001 |
 | R | – | – | `Error: Last Name is required` | CHK-002 |
 | R | R | – | `Error: Postal Code is required` | CHK-003 |
+| – | R | – · – | – | R | `Error: First Name is required` | merged with – – – (same outcome) |
+| R | – | R | `Error: Last Name is required` | **missing** (Last Name is reported even when Postal Code is filled) |
 | – | R | R | `Error: First Name is required` | **missing** (the order rule says First Name is reported even when the later fields are filled) |
 | R | R | R | continue to the overview | CHK-004, CHK-005, CHK-007 |
 
@@ -63,5 +65,5 @@ worth keeping. Read before you design: `.claude/knowledge/shared-instructions.md
 
 The case catches an implementation that infers earlier fields from later ones (for example, it checks
 First Name only when the other fields are also empty): with Last Name and Postal Code filled, such a
-form continues or names a later field. None of the existing three cases fills the later fields while
+form continues or names a later field. None of CHK-001, CHK-002 or CHK-003 fills the later fields while
 leaving First Name empty, so none of them can detect it.

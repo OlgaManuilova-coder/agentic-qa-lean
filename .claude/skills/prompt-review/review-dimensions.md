@@ -7,12 +7,12 @@ what a typical finding looks like.
 - **Description** (frontmatter) says *what* it does and *when* to use it, in the words a user would type ("review the cases", "run smoke"). If it overlaps another prompt, it says which to use when.
 - **Arguments** in `argument-hint` match what the body actually parses.
 - **Callers** (from `prompt:facts`) call it by its current name, with arguments it supports, and expect the output it actually produces.
-- *Typical finding:* "regression-orchestrator expects `results/<RUN_ID>/<SUITE>.json`, but test-runner writes `<SUITE_ID>-results.json`" (BLOCKER).
+- *Typical finding:* "regression-orchestrator expects `results/<RUN_ID>/<SUITE>.json`, but test-runner-agent writes `<SUITE_ID>-results.json`" (BLOCKER).
 
 ## D2 — Executability: can every step actually be done?
 - Every path exists (`danglingPaths`). Every `npm run` script exists (`unknownNpmScripts`). Every tool or MCP server named is configured in `.mcp.json` or `.claude/settings.json`.
 - Every step has an input it can get and an output it produces. Steps that need a human say so and stop.
-- Conditions are explicit ("if G1 fails, …"), not implied.
+- Conditions are explicit ("if `npm run suites:lint` fails, …"), not implied.
 - *Typical finding:* "Step 3 runs `npm run env:verify`, which does not exist; the script is `env:check`" (BLOCKER).
 
 ## D3 — Single source of truth: is anything copied that should be cited?

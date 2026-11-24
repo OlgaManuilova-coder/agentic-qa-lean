@@ -29,6 +29,7 @@ The demo target is [SauceDemo](https://www.saucedemo.com), a public practice sho
 | Prompt quality loop (review, heal, evidence-based improve) | Review only | ✓ |
 | Plugin marketplace (setup, secrets, bug lifecycle, per-ticket testing) | — | ✓ |
 | Autonomous bug-fix merge requests with independent review | — | ✓ |
+| Practice app with seeded bugs and a full find → fix → independent review → verify cycle | — (a real bug found on SauceDemo, see below) | ✓ |
 | GitLab / Jira integration, guardrails for trackers | — | ✓ |
 | Credentials kept out of files (OS keychain, CI secrets) | — | ✓ |
 | Scheduled and upstream-triggered agentic regression in CI | — | ✓ |
@@ -106,7 +107,7 @@ cd agentic-qa-lean
 npm install
 npx playwright install chromium firefox   # browsers for the MCP lanes and the specs
 
-npm run check          # env:check + suites:lint + unit tests — everything should be green
+npm run check          # env:check + suites:lint + prompts:lint + unit tests — everything should be green
 npm run suites:list    # what is there
 ```
 
@@ -254,7 +255,11 @@ Run it before committing any change under `.claude/`.
 
 Both review skills were run on this repository while it was built. `review:tests` found a real
 determinism problem in case CART-006 ("Add **any** two products": two agents would pick different
-products), which is now fixed.
+products), which is now fixed. Candidates a reviewer decided to keep are recorded with the reason in
+`config/review-accepted.json`, so the next review does not argue the same point again.
+
+`npm run prompts:lint` is the hard gate under `prompt-review`: a prompt whose frontmatter does not
+parse loads with no description, so it is silently never picked.
 
 ## A real run, recorded
 
@@ -266,6 +271,11 @@ SauceDemo in a real browser:
 - **Two findings no step asked for:** deep links served with HTTP 404, and a new "Generate PDF order" button missing from the domain knowledge. Both are graded AMBIGUOUS for a human.
 
 Read it before your first run, so you know what good output looks like.
+
+This run shows the **find** half. Finding a bug in a product you don't own stops at a good bug report.
+The Enterprise edition adds a practice app of its own with seeded bugs, so the whole cycle runs end
+to end: the failing test first, the fix, a review by an agent that never saw the fixer's reasoning,
+and the verification run, with the merge left to a human.
 
 ## Guardrails
 
