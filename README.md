@@ -1,9 +1,5 @@
 # Agentic QA · by Olga Manuilova — lean edition (open reference implementation)
 
-> **Part of the IP architecture of Olga Manuilova:** two core frameworks — **Agentic QA** and **Agentic SDLC** — stand on a
-> shared **Agentic Core** of control modules (identity, authority, enforcement, evidence, provenance, verification, human
-> decision boundaries, recovery), under the **Assured Autonomy Framework** — the assurance and governance layer for AI
-> systems that work with sensitive data, delegated authority and consequential actions. See `ARCHITECTURE.md`.
 
 
 **The open reference implementation of an agentic QA system.** Test cases are written in plain English
