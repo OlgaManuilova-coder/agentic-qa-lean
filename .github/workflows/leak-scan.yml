@@ -1,0 +1,27 @@
+# © 2026 Olga Manuilova — Agentic QA Framework (lean edition). Apache License 2.0: keep this notice and the NOTICE file in all copies. https://github.com/OlgaManuilova-coder/agentic-qa-lean
+# Public repository: fail any push (any branch) or pull request that carries private material, in the files or in
+# any line added since main (see scripts/leak-scan.mjs).
+name: leak-scan
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  leak-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the added-lines scan reads the branch's commits
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tracked files, and every line added since main
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then BASE="origin/${{ github.base_ref }}";
+          elif [ "${{ github.ref_name }}" != "main" ]; then BASE="origin/main"; else BASE=""; fi
+          if [ -n "$BASE" ]; then node scripts/leak-scan.mjs --added "$BASE"; else npm run leak:scan; fi
+      - name: Unit tests (this repository has no other CI workflow)
+        run: npm test

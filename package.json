@@ -18,7 +18,8 @@
     "check": "npm run env:check && npm run suites:lint && npm run prompts:lint && npm test",
     "review:tests": "node scripts/review-tests.mjs",
     "prompt:facts": "node scripts/prompt-facts.mjs",
-    "prompts:lint": "node scripts/prompts-lint.mjs"
+    "prompts:lint": "node scripts/prompts-lint.mjs",
+    "leak:scan": "node scripts/leak-scan.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1"
